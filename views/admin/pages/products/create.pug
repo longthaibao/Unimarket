@@ -7,7 +7,8 @@ block main
   h1(class="mb-4") Thêm mới sản phẩm
 
   form(
-    action=`/${prefixAdmin}/products/create`
+    action=`${prefixAdmin}/products/create`
+    id="form-create-product"
     method="POST"
     enctype="multipart/form-data"
   )
@@ -73,8 +74,8 @@ block main
       )
       img(
         src=""
-        class="image-preview"
         upload-image-preview
+        class="image-preview"
       )
     div(class="form-group")
       label(for="position") Vị trí
@@ -110,3 +111,5 @@ block main
         type="submit"
         class="btn btn-primary"
       ) Tạo mới
+
+  script(src="/admin/js/product.js")

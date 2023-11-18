@@ -8,7 +8,8 @@ block main
   h1(class="mb-4") Chỉnh sửa sản phẩm
 
   form(
-    action=`/${prefixAdmin}/products/edit/${product.id}?_method=PATCH`
+    action=`${prefixAdmin}/products/edit/${product.id}?_method=PATCH`
+    id="form-edit-product"
     method="POST"
     enctype="multipart/form-data"
   )
@@ -29,6 +30,7 @@ block main
         id="desc"
         name="description"
         rows="5"
+        value=product.description
       ) #{product.description}
     div(class="form-group")
       label(for="price") Giá
@@ -75,8 +77,8 @@ block main
       )
       img(
         src=product.thumbnail
-        class="image-preview"
         upload-image-preview
+        class="image-preview"
       )
     div(class="form-group")
       label(for="position") Vị trí
@@ -114,3 +116,5 @@ block main
         type="submit"
         class="btn btn-primary"
       ) Cập nhật
+
+  script(src="/admin/js/product.js")

@@ -1,5 +1,5 @@
-const PREFIX_ADMIN = "admin";
+const PATH_ADMIN = "/admin";
 
 module.exports = {
-  prefixAdmin: PREFIX_ADMIN
+  prefixAdmin: PATH_ADMIN
 };

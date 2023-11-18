@@ -2,13 +2,14 @@ extends ../../layouts/default.pug
 include ../../mixins/filter-status.pug
 include ../../mixins/search.pug
 include ../../mixins/pagination.pug
-include ../../mixins/change-multi.pug
+include ../../mixins/form-change-multi.pug
 include ../../mixins/alert.pug
+include ../../mixins/sort.pug
 
 block main
   +alert-success(5000)
-  
-  h1(class="mb-4") Danh sách sản phẩm
+
+  h1 Danh sách sản phẩm
 
   .card.mb-3
     .card-header Bộ lọc và Tìm kiếm
@@ -20,37 +21,43 @@ block main
           +search(keyword)
 
   .card.mb-3
-    .card-header Danh sách
+    .card-header Sắp xếp
     .card-body
       .row
-        .col-8
-          +change-multi(`/${prefixAdmin}/products/change-multi?_method=PATCH`)
         .col-4
-          a(
-            href=`/${prefixAdmin}/products/create`
-            class="btn btn-outline-success"
-          ) + Thêm mới
+          +sort()
 
-      table(
-        class="table table-hover table-sm"
-        checkbox-multi
-      )
-        thead
-          tr
-            th
-              input(type="checkbox" name="checkall")
-            th STT
-            th Hình ảnh
-            th Tiêu đề
-            th Giá
-            th Vị trí
-            th Trạng thái
-            th Hành động
+  .card.mb-3
+    .card-header Danh sách
+      .card-body
+        .row
+          .col-8
+            +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+          .col-4
+            a(
+              href=`${prefixAdmin}/products/create`
+              class="btn btn-outline-success"
+            ) + Thêm mới
 
-        tbody
-          if(products.length > 0)
+        table(
+          class="table table-hover table-sm"
+          checkbox-multi
+        )
+          thead
+            tr
+              th
+                input(type="checkbox" name="checkall")
+              th STT
+              th Hình ảnh
+              th Tiêu đề
+              th Giá
+              th Vị trí
+              th Trạng thái
+              th Hành động
+
+          tbody
             each item, index in products
-              tr
+              tr 
                 td
                   input(
                     type="checkbox"
@@ -74,55 +81,54 @@ block main
                     style="width: 60px"
                     min="1"
                     name="position"
-                  )                
+                  )
                 td
                   if(item.status == "active")
-                    button(
-                      class="badge badge-success"
-                      button-change-status
+                    a(
+                      href="javascript:;"
                       data-status=item.status
                       data-id=item.id
+                      button-change-status
+                      class="badge badge-success"
                     ) Hoạt động
                   else
-                    button(
-                      class="badge badge-danger"
-                      button-change-status
+                    a(
+                      href="javascript:;"
                       data-status=item.status
                       data-id=item.id
+                      button-change-status
+                      class="badge badge-danger"
                     ) Dừng hoạt động
                 td
                   a(
-                    href=`/${prefixAdmin}/products/detail/${item.id}`
+                    href=`${prefixAdmin}/products/detail/${item.id}`
                     class="btn btn-secondary btn-sm"
-                  ) Chi tiết
+                    ) Chi tiết
                   a(
-                    href=`/${prefixAdmin}/products/edit/${item.id}`
+                    href=`${prefixAdmin}/products/edit/${item.id}`
                     class="btn btn-warning btn-sm"
-                  ) Sửa
+                    ) Sửa
                   button(
                     class="btn btn-danger btn-sm ml-1"
                     button-delete
                     data-id=item.id
                   ) Xóa
-          else
-            tr
-              td(
-                colspan="7"
-                class="text-center"
-              ) Không tìm thấy sản phẩm nào
 
-  form(
-    id="form-change-status"
-    method="POST"
-    action=""
-		data-path=`/${prefixAdmin}/products/change-status`
-  )
-
-  form(
-    id="form-delete-item"
-    method="POST"
-    action=""
-		data-path=`/${prefixAdmin}/products/delete`
-  )
 
   +pagination(pagination)
+
+  form(
+    action=""
+    method="POST"
+    id="form-change-status"
+    data-path=`${prefixAdmin}/products/change-status`
+  )
+
+  form(
+    action=""
+    method="POST"
+    id="form-delete-item"
+    data-path=`${prefixAdmin}/products/delete`
+  )
+
+  script(src="/admin/js/product.js")
