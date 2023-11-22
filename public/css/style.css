@@ -2,7 +2,7 @@
 .header {
     border-bottom: 1px solid #ddd;
     padding: 10px 0;
-    background-color: aqua;
+/*     background-color: aqua; */
   }
   
   .header .inner-logo img {
