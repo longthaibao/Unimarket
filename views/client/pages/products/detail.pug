@@ -15,7 +15,7 @@ block main
                 div(class="inner-price-new") #{product.priceNew}đ
               if (product.price)
               div(class="inner-price-old") #{product.price}đ
-  
+            
             form(
               action=`/cart/add/${product.id}`
               method="POST"
@@ -29,11 +29,11 @@ block main
                 min="1"
                 max=product.stock
               )
-              div.button(
+              button(
                 type="submit"
                 class="btn btn-success btn-block"
               ) 
-                p.text Thêm vào giỏ hàng
+                .text Thêm vào giỏ hàng
                   span.icon
                     i(class="fa-solid fa-cart-shopping")
 

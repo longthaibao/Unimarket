@@ -1,15 +1,27 @@
 extends ../../layouts/default.pug
 include ../../mixins/table-tree.pug
+include ../../mixins/filter-status.pug
+include ../../mixins/search.pug
+include ../../mixins/pagination.pug
+include ../../mixins/form-change-multi.pug
+include ../../mixins/alert.pug
+include ../../mixins/sort.pug
+include ../../mixins/moment.pug
 
 block main
   if(role.permissions.includes("products-category_view"))
+  
     h1 Danh mục sản phẩm
+
+    
 
     .card.mb-3
       .card-header Danh sách
         .card-body
           .row
             .col-8
+              if(role.permissions.includes("products-category_edit"))
+                +form-change-multi(`${prefixAdmin}/products-category/change-multi?_method=PATCH`)
             .col-4
               if(role.permissions.includes("products-category_create"))
                 a(
@@ -34,3 +46,22 @@ block main
 
             tbody
               +table-tree(records)
+
+    //- +pagination(pagination)
+
+    form(
+      action=""
+      method="POST"
+      id="form-change-status"
+      data-path=`${prefixAdmin}/products-category/change-status`
+    )
+
+    form(
+      action=""
+      method="POST"
+      id="form-delete-item"
+      data-path=`${prefixAdmin}/products-category/delete`
+    )
+
+    script(src="/admin/js/product.js")  
+    //- có thể dùng chung với product
