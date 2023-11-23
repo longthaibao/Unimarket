@@ -280,7 +280,7 @@ body{
   .icon{
     color: #0E79FF;
     margin-left: 10px;
-    i {
+    i{
         font-size: 22px;
     }
   }
@@ -339,3 +339,156 @@ body{
   cursor: pointer;
 }
 /* End Show Alert */
+/*User Info*/
+/* Menu */
+.content{
+  background: rgba(247, 250, 252, 1);
+}
+
+.menu{
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-1{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-top: 1px solid #DEE2E7;
+  border-bottom: 1px solid #DEE2E7;
+  padding: 15px;
+  margin-top: 22px;
+}
+a{
+  color: #1C1C1C;
+  text-decoration: none;
+}
+
+.user-avatar{
+  width:50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+
+}
+
+.user-info-1{
+  display: flex;
+  align-items: center;
+}
+
+.menu-2{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bi-person{
+  width: 20px;
+  height: 20px;
+  background:#1C1C1C;
+}
+
+.menu-2-config{
+  display: flex;
+  justify-items: center;
+  justify-items: flex-start;
+  width: 100%;
+  height: 48px;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.menu-2-option{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+
+.option{
+  padding: 8px;
+}
+
+.menu-3{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/*Main info config*/
+.info-config{
+  border-bottom: 1px solid #DEE2E7;
+  padding: 7px;
+  margin-top: 22px;
+  margin-bottom: 4px;
+}
+
+/*Upload avatar*/
+
+.upload-avatar{
+  width: 100%;
+  height: 274px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left:1px solid #DEE2E7 ;
+  padding: 78px 30px;
+  margin-top: 33px;
+}
+
+#selectedImage{
+  width: 100%;
+  height: 124px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+/*Address config*/
+.header-address{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #DEE2E7;
+  padding: 7px;
+  margin-top: 22px;
+  margin-bottom: 4px;
+  height: 90px;
+}
+
+.address-config{
+  width: 100%;
+  background: white;
+}
+
+.user-address{
+  margin-right: 10px;
+}
+
+.wrapper-address{
+  display: flex;
+  margin: 29px;
+}
+
+.show-address{
+  padding: 10px;
+}
+
+.form-address{
+  border-bottom: 1px solid #DEE2E7;
+}
+
+/*Change Password*/
+.header-changepass{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #DEE2E7;
+  padding: 7px;
+  margin-top: 22px;
+  margin-bottom: 4px;
+  height: 90px;
+}
+.change-pass{
+  background: white;
+  padding: 130px;
+}

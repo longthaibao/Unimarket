@@ -1,0 +1,20 @@
+mixin menu(user)
+        .menu
+            .menu-1
+                img(src=user.avatar?user.avatar:settingGeneral.logo, alt='User Avatar', class="user-avatar")
+                .menu-config
+                    h5=user.fullName
+                    a(href='#') Sửa hồ sơ
+            .menu-2
+                .menu-2-config
+                    i.fa-regular.fa-user
+                    h6 Tài khoản của tôi
+                .menu-2-option
+                    a(href='/user/info',class="option") Hồ sơ
+                    a(href='/user/address',class="option") Địa chỉ
+                    a(href='/user/changepassword',class="option") Đổi mật khẩu
+            .menu-3
+                i.fa-solid.fa-bag-shopping
+                a(href='/cart') Đơn mua
+        script.
+           src="https://kit.fontawesome.com/92606ce77f.js" crossorigin="anonymous"

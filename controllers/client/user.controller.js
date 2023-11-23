@@ -5,6 +5,7 @@ const Cart = require("../../models/cart.model");
 
 const generateHelper = require("../../helpers/generate");
 const sendMailHelper = require("../../helpers/sendMail");
+const SettingGeneral = require("../../models/settings-general.model");
 
 // [GET] /user/register
 module.exports.register = async (req, res) => {
@@ -69,7 +70,7 @@ module.exports.loginPost = async (req, res) => {
     res.redirect("back");
     return;
   }
-  
+
   const cart = await Cart.findOne({
     user_id: user.id
   });
@@ -91,7 +92,7 @@ module.exports.loginPost = async (req, res) => {
 
 // [GET] /user/logout
 module.exports.logout = async (req, res) => {
-  res.clearCookie("tokenUser");  
+  res.clearCookie("tokenUser");
   res.clearCookie("cartId");
   res.redirect("/");
 };
@@ -200,5 +201,83 @@ module.exports.resetPasswordPost = async (req, res) => {
 module.exports.info = async (req, res) => {
   res.render("client/pages/user/info", {
     pageTitle: "Thông tin tài khoản",
+    User:User
   });
 };
+//[GET] /user/address
+module.exports.address = async (req, res) => {
+  res.render("client/pages/user/info-address", {
+    pageTitle: "Thông tin tài khoản",
+    User:User
+  });
+};
+
+//[GET] /user/address/create
+module.exports.createAdd = async (req, res) => {
+  res.render("client/pages/user/info-address", {
+    pageTitle: "Thông tin tài khoản",
+    User:User
+  });
+};
+
+//[GET] /user/changepassword
+module.exports.changePass = async (req, res) => {
+  res.render("client/pages/user/config-changepass", {
+    pageTitle: "Thông tin tài khoản",
+    User:User
+  },);
+};
+
+//[POST] /user/info
+module.exports.update =  (req,res,next)=> {
+  const day = req.body.day;
+  const month = req.body.month;
+  const year = req.body.year;
+  const dateOfBirth = new Date(year, month - 1, day)
+
+  const data={
+    ...req.body,
+    birthday:dateOfBirth,
+  }
+  User.updateOne({_id: req.params.id},data)
+      .then(()=>res.redirect("/user/address"))
+      .catch(next)
+}
+
+//[POST] user/update/address
+
+module.exports.update_address =  (req,res,next)=> {
+  const userId = req.params.id;
+  const mainAddressValue = req.body.mainAddress;
+  const idAdd=req.params.idAdd;
+  console.log(idAdd);
+  User.updateOne(
+      {
+        _id: userId,
+        "address.idAddress": idAdd, },
+      { $set: { 'address.$.mainAddress': mainAddressValue } }
+  )
+      .then(() => res.redirect("/user/address"))
+      .catch(next);
+}
+//[POST] user/:id/changepass
+module.exports.updatePassword =  (req,res,next)=> {
+const newpass=req.body.newpassword;
+const confirmpassword=req.body.confirmpassword;
+if(newpass===confirmpassword){
+  res.send("OK")
+  // User.updateOne(
+  //     {
+  //       _id: userId,
+  //       "address.idAddress": idAdd, },
+  //     { $set: { 'address.$.mainAddress': mainAddressValue } }
+  // )
+  //     .then(() => res.redirect("/user/changepassword"))
+  //     .catch(next);
+}
+else{
+  req.flash("Error","Vui long nhap lai");
+  res.redirect("/user/changepassword");
+  return;
+}
+}

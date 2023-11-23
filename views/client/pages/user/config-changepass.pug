@@ -1,7 +1,7 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 include ../../mixins/menu
-include ../../mixins/info-config
+include ../../mixins/changepass
 block main
   .container.my-3
     .row
@@ -12,4 +12,4 @@ block main
       .col-3
         +menu(user)
       .col-9
-        +info-config(user)
+        +changepass(user)
