@@ -1,6 +1,12 @@
 include product-item.pug
 
 mixin product-grid(products)
-  .row
+  .row.py-3
     each item in products
       +product-item(item)
+
+mixin product-grid-main-page(products)
+  .row.p-3
+    - for (var i = 0; i < 4; i++) {
+        +product-item-main-page(products[i])
+    - }
