@@ -6,7 +6,6 @@ mixin product-grid(products)
       +product-item(item)
 
 mixin product-grid-main-page(products)
-  .row.p-3
-    - for (var i = 0; i < 4; i++) {
-        +product-item-main-page(products[i])
-    - }
+  .row
+    each item in products
+      +product-item-main-page(item)
