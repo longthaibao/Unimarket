@@ -17,7 +17,7 @@
 /* Body */
 .body .sider {
   width: 150px;
-  background: #323232;
+  background: #ffffff;
   color: #fff;
   height: calc(100vh - 56px);
   position: fixed;
@@ -52,10 +52,17 @@
 }
 
 .sider .inner-menu ul li a {
-  color: #fff;
+  color: black;
   display: block;
   padding: 6px 10px;
-  border-bottom: 1px solid #515151;
+  
+}
+.sider .inner-menu ul li a:hover{
+  color: #0D6EFD;
+  display: block;
+  padding: 6px 10px;
+  text-decoration: none;
+  border-bottom: 1px solid #0D6EFD;
 }
 /* End Sider */
 
