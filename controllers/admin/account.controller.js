@@ -113,7 +113,7 @@ module.exports.editPatch = async (req, res) => {
 module.exports.changeStatus = async (req, res) => {
   const status = req.params.status;
   const id = req.params.id;
-
+  
   const updatedBy = {
     account_id: res.locals.user.id,
     updatedAt: new Date()
@@ -149,4 +149,26 @@ module.exports.deleteItem = async (req, res) => {
   req.flash("success", `Đã xóa thành công tài khoản!`);
 
   res.redirect("back");
+};
+
+
+// [GET] /admin/account/detail/:id
+module.exports.detail = async (req, res) => {
+  try {
+    const find = {
+      deleted: false,
+      _id: req.params.id
+    };
+
+    const account = await Account.findOne(find);
+
+    console.log(account);
+
+    res.render("admin/pages/accounts/detail", {
+      pageTitle: account.title,
+      account: account
+    });
+  } catch (error) {
+    res.redirect(`${systemConfig.prefixAdmin}/accounts`);
+  }
 };
