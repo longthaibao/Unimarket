@@ -1,11 +1,19 @@
+include ../mixins/sub-menu.pug
+
+
 header.header
   .container-fluid
     .row.align-items-center
-      .col-3
-        .inner-logo
-          a(href="/admin/dashboard") ADMIN
+      .col-6
+        .inner-logo.d-flex.flex-row.align-items-center
+          a(href="/admin/dashboard")
+              img(src="", alt="", style="border-radius: 15px; box-shadow: 5px 0px rgba(13, 110, 253, 0.2)")
+          h3(class="mx-4 my-auto align-items-center fs-1")
+            a(href="/admin/dashboard" class="text-decoration-none") Uni Market Admin
 
-      .col-9
+      
+
+      .col-6
         div(class="text-right")
           a(
             href=`${prefixAdmin}/my-account`
