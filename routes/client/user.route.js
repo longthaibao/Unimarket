@@ -13,6 +13,9 @@ router.get("/changepassword",controller.changePass)
 
 router.get("/address/create",controller.createAdd)
 
+
+router.patch("/:id/address/create",controller.newAdd)
+
 router.patch("/:id/changepass",controller.updatePassword)
 
 router.patch("/:id/:idAdd/address/update",controller.update_address)

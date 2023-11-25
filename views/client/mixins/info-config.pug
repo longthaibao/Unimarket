@@ -4,21 +4,21 @@ mixin info-config(user)
               .info-config
                   h5 Hồ sơ của tôi
                   p Quản lý thông tin hồ sơ để bảo mật tài khoản
-     form(action=`/user/${user._id}/update/?_method=PATCH`, method="POST",enctype="multipart/form-data")
+     form(action=`/user/${user._id}/update/?_method=PATCH`, method="POST",enctype="multipart/form-data",class="form-info")
        .row
                 .col-sm-8
                       .row.mb-3
                           label.col-sm-4.col-form-label(for='username') Tên đăng nhập
                           .col-sm-8
-                              input#username.form-control(type='text', name="fullName", placeholder=user.fullName)
+                              input#username.form-control(type='text', name="fullName", value=user.fullName)
                       .row.mb-3
                           label.col-sm-4.col-form-label(for='email') Email
                           .col-sm-8
-                              input#email.form-control(type='text', placeholder=user.email,name="email")
+                              input#email.form-control(type='text', value=user.email,name="email")
                       .row.mb-3
                           label.col-sm-4.col-form-label(for='phone-number') Số điện thoại
                           .col-sm-8
-                              input#phone-number.form-control(type='text', name="phone", placeholder=user.phone)
+                              input#phone-number.form-control(type='text', name="phone", value=user.phone)
                       fieldset.row.mb-3
                           label.col-sm-4.pt-0 Giới tính
                           .col-sm-2
@@ -62,7 +62,7 @@ mixin info-config(user)
                            .btn.btn-light.btn-rounded.border.border-dark
                                label.form-label.text-black.m-1(for='customFile1') Choose file
                                input#customFile1.form-control.d-none(type='file', onchange="displaySelectedImage(event, 'selectedImage')",name="avatar",accept="image/*")
-       .row
+       .row.button-info
            button.btn.btn-primary(type='submit') Lưu
 
      script.

@@ -166,7 +166,7 @@
 
 /* End sub-menu */
 
-<<<<<<< HEAD
+
 /* product-detail */
 
 body{
@@ -306,8 +306,6 @@ body{
 }
 /* End product-detail */
 
-=======
->>>>>>> origin/main
 /* Show Alert */
 [show-alert] {
   position: fixed;
@@ -365,7 +363,6 @@ body{
   margin-top: 22px;
 }
 a{
-  color: #1C1C1C;
   text-decoration: none;
 }
 
@@ -413,6 +410,7 @@ a{
 
 .option{
   padding: 8px;
+  color: #1C1C1C;
 }
 
 .menu-3{
@@ -427,6 +425,14 @@ a{
   padding: 7px;
   margin-top: 22px;
   margin-bottom: 4px;
+}
+
+.button-info{
+  margin-bottom: 20px;
+}
+
+.form-info{
+  margin-top: 10px;
 }
 
 /*Upload avatar*/
@@ -495,5 +501,141 @@ a{
 }
 .change-pass{
   background: white;
-  padding: 130px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+}
+
+/*Create address*/
+.header-createAddress{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #DEE2E7;
+  padding: 7px;
+  margin-top: 22px;
+  margin-bottom: 4px;
+  height: 90px;
+}
+
+.form-createAddress{
+  margin-top: 30px;
+}
+
+/*Login*/
+.page{
+  background-color: #F7FAFC;
+}
+
+.login-page{
+  display: flex;
+  align-items: stretch;
+  padding: 20px;
+}
+
+.background-login {
+  width:100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+}
+
+.login-image{
+  width: 100%;
+  height: 100%;
+  border-radius: 10%;
+  position: relative;
+}
+
+.title-image{
+  position: absolute;
+  top: 15%; /* Đưa tiêu đề lên giữa theo chiều dọc */
+  left: 50%; /* Đưa tiêu đề vào giữa theo chiều ngang */
+  transform: translate(-50%, -50%); /* Dịch chuyển tiêu đề đi 50% chiều ngang và 50% chiều dọc để nằm chính giữa */
+  text-align: center;
+  z-index: 999;
+  font-weight: 800;
+  line-height: 120px;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.title-question{
+  position: absolute;
+  top: 60%; /* Đưa tiêu đề lên giữa theo chiều dọc */
+  left: 50%; /* Đưa tiêu đề vào giữa theo chiều ngang */
+  transform: translate(-50%, -50%); /* Dịch chuyển tiêu đề đi 50% chiều ngang và 50% chiều dọc để nằm chính giữa */
+  text-align: center;
+  z-index: 999;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 10px;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.loginCustom-button{
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  top: 75%; /* Đưa tiêu đề lên giữa theo chiều dọc */
+  left: 50%; /* Đưa tiêu đề vào giữa theo chiều ngang */
+  transform: translate(-50%, -50%); /* Dịch chuyển tiêu đề đi 50% chiều ngang và 50% chiều dọc để nằm chính giữa */
+  text-align: center;
+  z-index: 999;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: rgba(217, 217, 217, 0.71);
+  border: 4px solid #FFFAFA;
+  border-radius: 30px;
+}
+
+.main-login{
+  display: flex;
+  align-items: center;
+}
+
+/*Register*/
+
+.page-register{
+  background: #F7FAFC;
+}
+
+.register-page{
+  display: flex;
+  align-items: stretch;
+  padding: 20px;
+}
+
+.main-register{
+  display: flex;
+  align-items: center;
+}
+/*Forgot password*/
+.page-forgot{
+  background: #F7FAFC;
+}
+
+.main-forgot{
+  display: flex;
+  align-items: center;
+}
+/*Reset password*/
+.reset-page{
+  display: flex;
+  background: #F7FAFC;
+  padding: 20px;
+}
+
+.main-reset{
+  display: flex;
+  align-items: center;
+}
+/*OTP*/
+.otp-page{
+  display: flex;
+  background: #F7FAFC;
+  padding: 20px;
+  align-items: center;
 }

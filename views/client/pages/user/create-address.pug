@@ -1,11 +1,9 @@
 extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 include ../../mixins/menu
-include ../../mixins/changepass
-include ../../mixins/alert
+include ../../mixins/createAddress
 block main
-  +alert-error(5000)
-  .container.mb-3
+  .container.my-3
     .row
       .col-12
         +box-head("")
@@ -14,4 +12,4 @@ block main
       .col-3
         +menu(user)
       .col-9
-        +changepass(user)
+        +createAddress(user)
