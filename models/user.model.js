@@ -8,7 +8,10 @@ const userSchema = new mongoose.Schema(
     email: String,
     password: String,
     avatar: String,
-    birthday:Date,
+    birthday: {
+      type: Date,
+      default: new Date().getDate()
+    },
     address:[
         {
         mainAddress: String,
