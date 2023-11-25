@@ -1,5 +1,14 @@
+/*  Supports weights 100-900 */
+@import '@fontsource-variable/inter';
+
+body {
+  background-color: #f7fafc;
+  font-family: 'Inter Variable', sans-serif;
+}
+
 /* Header */
 .header {
+    background-color: #FFFFFF;
     border-bottom: 1px solid #ddd;
     padding: 10px 0;
   }
@@ -29,6 +38,9 @@
   /* End Header */
   
   /* Footer */
+  .footer {
+    background-color: #FFFFFF;
+  }
   .footer .inner-logo img {
     max-height: 50px;
     max-width: 100%;

@@ -1,21 +1,23 @@
 mixin product-item(item)
-  .col-3.mb-3
-    .product-item
-      .inner-image
-        img(src=item.thumbnail, alt=item.title)
-        if(item.featured == "1")
-          .inner-featured Nổi bật
-      .inner-content
-        h3.inner-title
-          a(href=`/products/detail/${item.slug}`) #{item.title}
-        .inner-price-new #{item.priceNew}$
-        .inner-price-old #{item.price}$
-        .inner-discount -#{item.discountPercentage}%
+  .border.border-1.d-flex.flex-column.justify-content-center(style="background-color: #ffffff; border-color: #ddd; width: 19.5%; margin: 0.25%")
+    div.py-2.w-100
+      a.align-self-center(href=`/products/detail/${item.slug}`)
+        img(src=item.thumbnail, alt=item.title, style="object-fit: contain; width: 100%; height: 150px;")
+    div(style="padding: 10px;")
+      a(href=`/products/detail/${item.slug}` style="font-size: 15px; width: 95%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-block;") #{item.title}
+      .d-flex.flex-row(style="overflow: auto")
+        p(style="margin-right: 10px; color: #757575; text-decoration: line-through; ") &#8363;#{item.price}
+        p(style="color: #ee4d2d") &#8363;#{item.priceNew}
+      p(style="color: #fff; background: red; font-weight: 600; display: inline-block; padding: 3px 6px; border-radius: 8px;") -#{item.discountPercentage}%
 
 mixin product-item-main-page(item)
-  .col-3.border.border-1.d-flex.flex-column.align-items-center(style="border-color: #ddd; width: 25%; height: 280px")
-    div.p-2
-      a(href=`/products/detail/${item.slug}`)
-        img(src=item.thumbnail, alt=item.title, style="height: 100%; width: 100%; aspect-ratio: 3/4;")
-    div(style="font-size: 13px; padding: 5px")
-      a(href=`/products/detail/${item.slug}`) #{item.title}
+  .border.border-1.border-left-0.d-flex.flex-column.justify-content-center(style="border-color: #ddd; width: 25%")
+    div.py-2.w-100
+      a.align-self-center(href=`/products/detail/${item.slug}`)
+        img(src=item.thumbnail, alt=item.title, style="object-fit: contain; width: 100%; height: 150px;")
+    div(style="padding: 10px;")
+      a(href=`/products/detail/${item.slug}` style="font-size: 15px; width: 95%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: inline-block;") #{item.title}
+      .d-flex.flex-row(style="overflow: auto")
+        p(style="margin-right: 10px; color: #757575; text-decoration: line-through; ") &#8363;#{item.price}
+        p(style="color: #ee4d2d") &#8363;#{item.priceNew}
+      p(style="color: #fff; background: red; font-weight: 600; display: inline-block; padding: 3px 6px; border-radius: 8px;") -#{item.discountPercentage}%
