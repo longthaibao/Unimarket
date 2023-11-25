@@ -57,13 +57,13 @@
   /* product-item */
   .product-item {
     border: 1px solid #ddd;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     overflow: hidden;
   }
   
   .product-item .inner-image {
     width: 100%;
-    aspect-ratio: 4/3;
+    aspect-ratio: 3/4;
     border-bottom: 1px solid #ddd;
     position: relative;
   }
@@ -87,12 +87,16 @@
   }
   
   .product-item .inner-content {
-    padding: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
   
   .product-item .inner-content .inner-title {
-    font-size: 20px;
-    font-weight: 600;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 500;
   }
   
   .product-item .inner-content .inner-price-new {

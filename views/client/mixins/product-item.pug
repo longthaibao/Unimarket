@@ -1,5 +1,5 @@
 mixin product-item(item)
-  .col-4.mb-3
+  .col-3.mb-3
     .product-item
       .inner-image
         img(src=item.thumbnail, alt=item.title)
@@ -11,3 +11,11 @@ mixin product-item(item)
         .inner-price-new #{item.priceNew}$
         .inner-price-old #{item.price}$
         .inner-discount -#{item.discountPercentage}%
+
+mixin product-item-main-page(item)
+  .col-3.border.border-1.d-flex.flex-column.align-items-center(style="border-color: #ddd; width: 25%; height: 280px")
+    div.p-2
+      a(href=`/products/detail/${item.slug}`)
+        img(src=item.thumbnail, alt=item.title, style="height: 100%; width: 100%; aspect-ratio: 3/4;")
+    div(style="font-size: 13px; padding: 5px")
+      a(href=`/products/detail/${item.slug}`) #{item.title}
