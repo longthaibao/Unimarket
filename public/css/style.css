@@ -1,10 +1,20 @@
+<<<<<<< HEAD
 /* body */
 body{
   background-color: rgb(243, 243, 243);
+=======
+/*  Supports weights 100-900 */
+@import '@fontsource-variable/inter';
+
+body {
+  background-color: #f7fafc;
+  font-family: 'Inter Variable', sans-serif;
+>>>>>>> 78db6db4dff0b9f6f61e6a557bd6c3a610a190fc
 }
 
 /* Header */
 .header {
+    background-color: #FFFFFF;
     border-bottom: 1px solid #ddd;
     padding: 10px 0;
 /*     background-color: aqua; */
@@ -35,6 +45,9 @@ body{
   /* End Header */
   
   /* Footer */
+  .footer {
+    background-color: #FFFFFF;
+  }
   .footer .inner-logo img {
     max-height: 50px;
     max-width: 100%;
@@ -62,13 +75,13 @@ body{
   /* product-item */
   .product-item {
     border: 1px solid #ddd;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     overflow: hidden;
   }
   
   .product-item .inner-image {
     width: 100%;
-    aspect-ratio: 4/3;
+    aspect-ratio: 3/4;
     border-bottom: 1px solid #ddd;
     position: relative;
   }
@@ -92,12 +105,16 @@ body{
   }
   
   .product-item .inner-content {
-    padding: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
   
   .product-item .inner-content .inner-title {
-    font-size: 20px;
-    font-weight: 600;
+    width: 100%;
+    font-size: 12px;
+    font-weight: 500;
   }
   
   .product-item .inner-content .inner-price-new {
@@ -171,6 +188,146 @@ body{
 
 /* End sub-menu */
 
+
+/* product-detail */
+
+body{
+  background-color: rgb(243, 243, 243);
+}
+
+.product-detail .product-infor {
+  background-color: white;
+  box-sizing: border-box;
+}
+
+.product-detail .image {
+  width: 25%;
+  float: left;
+  padding: 30px;
+}
+
+.product-detail .infor {
+  width: 75%;
+  float: left;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.product-detail .inner-thumb img {
+  width: 100%;
+  height: auto;
+}
+
+.product-detail .infor .inner-title {
+  font-size: 32px;
+  margin-bottom: 15px;
+  width: 70%;
+  float: left;
+
+}
+
+.product-detail .inner-category {
+  margin-bottom: 10px;
+  width: 100%;
+  float: left;
+}
+
+.product-detail .inner-price-new {
+  color: black;
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 10px;
+  grid-column: 1 / span 2;
+  grid-row: 2;
+}
+
+.product-detail .inner-price-old {
+  color: red;
+  font-weight: 600;
+  font-size: 20px;
+  text-decoration: line-through;
+  margin-bottom: 10px;
+  grid-column: 1 / span 2;
+  grid-row: 3;
+}
+
+.product-detail .inner-percent {
+  margin-bottom: 10px;
+}
+
+.product-detail .inner-percent span {
+  color: #fff;
+  background: red;
+  font-weight: 600;
+  display: inline-block;
+  padding: 3px 6px;
+  border-radius: 8px;
+}
+
+.product-detail .inner-stock {
+  margin-bottom: 10px;
+  padding-top: 10px;
+  width: 100%;
+  float: left;  
+  border-top: 1px solid lightgray;
+}
+
+.product-detail .inner-stock span {
+  color: #fff;
+  background: #127FFF;
+  font-weight: 600;
+  display: inline-block;
+  padding: 3px 6px;
+  border-radius: 8px;
+}
+
+.product-detail .form-add-to-cart{
+  padding: 5px;
+  float: left;
+  width: 30%;
+}
+
+.product-detail .form-control{
+  background-color: rgb(246, 246, 232);
+}
+
+.product-detail .btn{
+  color: blue;
+  border: 2px solid blue;
+  border-radius: 6px;
+  background-color: rgb(196, 255, 255)
+}
+
+.product-detail .button .text{
+  position: relative;
+  text-align: center;
+  margin: auto;
+  .icon{
+    color: #0E79FF;
+    margin-left: 10px;
+    i{
+        font-size: 22px;
+    }
+  }
+}
+
+.product-detail .col-12{
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.product-detail .inner-desc{
+  color: black;
+}
+.product-detail .box-head .inner-title {
+  margin-bottom: 0;
+  font-size: 28px;
+  font-weight: 600;
+  color: #0D6EFD;
+  border-bottom: 2px solid #0D6EFD;
+}
+/* End product-detail */
+
 /* Show Alert */
 [show-alert] {
   position: fixed;
@@ -207,3 +364,300 @@ body{
   cursor: pointer;
 }
 /* End Show Alert */
+/*User Info*/
+/* Menu */
+.content{
+  background: rgba(247, 250, 252, 1);
+}
+
+.menu{
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-1{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-top: 1px solid #DEE2E7;
+  border-bottom: 1px solid #DEE2E7;
+  padding: 15px;
+  margin-top: 22px;
+}
+a{
+  text-decoration: none;
+}
+
+.user-avatar{
+  width:50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+
+}
+
+.user-info-1{
+  display: flex;
+  align-items: center;
+}
+
+.menu-2{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bi-person{
+  width: 20px;
+  height: 20px;
+  background:#1C1C1C;
+}
+
+.menu-2-config{
+  display: flex;
+  justify-items: center;
+  justify-items: flex-start;
+  width: 100%;
+  height: 48px;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.menu-2-option{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 20px;
+}
+
+.option{
+  padding: 8px;
+  color: #1C1C1C;
+}
+
+.menu-3{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/*Main info config*/
+.info-config{
+  border-bottom: 1px solid #DEE2E7;
+  padding: 7px;
+  margin-top: 22px;
+  margin-bottom: 4px;
+}
+
+.button-info{
+  margin-bottom: 20px;
+}
+
+.form-info{
+  margin-top: 10px;
+}
+
+/*Upload avatar*/
+
+.upload-avatar{
+  width: 100%;
+  height: 274px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left:1px solid #DEE2E7 ;
+  padding: 78px 30px;
+  margin-top: 33px;
+}
+
+#selectedImage{
+  width: 100%;
+  height: 124px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+/*Address config*/
+.header-address{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #DEE2E7;
+  padding: 7px;
+  margin-top: 22px;
+  margin-bottom: 4px;
+  height: 90px;
+}
+
+.address-config{
+  width: 100%;
+  background: white;
+}
+
+.user-address{
+  margin-right: 10px;
+}
+
+.wrapper-address{
+  display: flex;
+  margin: 29px;
+}
+
+.show-address{
+  padding: 10px;
+}
+
+.form-address{
+  border-bottom: 1px solid #DEE2E7;
+}
+
+/*Change Password*/
+.header-changepass{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #DEE2E7;
+  padding: 7px;
+  margin-top: 22px;
+  margin-bottom: 4px;
+  height: 90px;
+}
+.change-pass{
+  background: white;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+}
+
+/*Create address*/
+.header-createAddress{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #DEE2E7;
+  padding: 7px;
+  margin-top: 22px;
+  margin-bottom: 4px;
+  height: 90px;
+}
+
+.form-createAddress{
+  margin-top: 30px;
+}
+
+/*Login*/
+.page{
+  background-color: #F7FAFC;
+}
+
+.login-page{
+  display: flex;
+  align-items: stretch;
+  padding: 20px;
+}
+
+.background-login {
+  width:100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+}
+
+.login-image{
+  width: 100%;
+  height: 100%;
+  border-radius: 10%;
+  position: relative;
+}
+
+.title-image{
+  position: absolute;
+  top: 15%; /* Đưa tiêu đề lên giữa theo chiều dọc */
+  left: 50%; /* Đưa tiêu đề vào giữa theo chiều ngang */
+  transform: translate(-50%, -50%); /* Dịch chuyển tiêu đề đi 50% chiều ngang và 50% chiều dọc để nằm chính giữa */
+  text-align: center;
+  z-index: 999;
+  font-weight: 800;
+  line-height: 120px;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.title-question{
+  position: absolute;
+  top: 60%; /* Đưa tiêu đề lên giữa theo chiều dọc */
+  left: 50%; /* Đưa tiêu đề vào giữa theo chiều ngang */
+  transform: translate(-50%, -50%); /* Dịch chuyển tiêu đề đi 50% chiều ngang và 50% chiều dọc để nằm chính giữa */
+  text-align: center;
+  z-index: 999;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 10px;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.loginCustom-button{
+  position: absolute;
+  width: 200px;
+  height: 50px;
+  top: 75%; /* Đưa tiêu đề lên giữa theo chiều dọc */
+  left: 50%; /* Đưa tiêu đề vào giữa theo chiều ngang */
+  transform: translate(-50%, -50%); /* Dịch chuyển tiêu đề đi 50% chiều ngang và 50% chiều dọc để nằm chính giữa */
+  text-align: center;
+  z-index: 999;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background: rgba(217, 217, 217, 0.71);
+  border: 4px solid #FFFAFA;
+  border-radius: 30px;
+}
+
+.main-login{
+  display: flex;
+  align-items: center;
+}
+
+/*Register*/
+
+.page-register{
+  background: #F7FAFC;
+}
+
+.register-page{
+  display: flex;
+  align-items: stretch;
+  padding: 20px;
+}
+
+.main-register{
+  display: flex;
+  align-items: center;
+}
+/*Forgot password*/
+.page-forgot{
+  background: #F7FAFC;
+}
+
+.main-forgot{
+  display: flex;
+  align-items: center;
+}
+/*Reset password*/
+.reset-page{
+  display: flex;
+  background: #F7FAFC;
+  padding: 20px;
+}
+
+.main-reset{
+  display: flex;
+  align-items: center;
+}
+/*OTP*/
+.otp-page{
+  display: flex;
+  background: #F7FAFC;
+  padding: 20px;
+  align-items: center;
+}

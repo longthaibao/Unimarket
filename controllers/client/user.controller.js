@@ -2,9 +2,12 @@ const md5 = require("md5");
 const User = require("../../models/user.model");
 const ForgotPassword = require("../../models/forgot-password.route");
 const Cart = require("../../models/cart.model");
+const mongoose = require("mongoose");
+
 
 const generateHelper = require("../../helpers/generate");
 const sendMailHelper = require("../../helpers/sendMail");
+const SettingGeneral = require("../../models/settings-general.model");
 
 // [GET] /user/register
 module.exports.register = async (req, res) => {
@@ -69,7 +72,7 @@ module.exports.loginPost = async (req, res) => {
     res.redirect("back");
     return;
   }
-  
+
   const cart = await Cart.findOne({
     user_id: user.id
   });
@@ -91,7 +94,7 @@ module.exports.loginPost = async (req, res) => {
 
 // [GET] /user/logout
 module.exports.logout = async (req, res) => {
-  res.clearCookie("tokenUser");  
+  res.clearCookie("tokenUser");
   res.clearCookie("cartId");
   res.redirect("/");
 };
@@ -200,5 +203,101 @@ module.exports.resetPasswordPost = async (req, res) => {
 module.exports.info = async (req, res) => {
   res.render("client/pages/user/info", {
     pageTitle: "Thông tin tài khoản",
+    User:User
   });
 };
+//[GET] /user/address
+module.exports.address = async (req, res) => {
+  res.render("client/pages/user/info-address", {
+    pageTitle: "Thông tin tài khoản",
+    User:User
+  });
+};
+
+//[GET] /user/address/create
+module.exports.createAdd = async (req, res) => {
+  res.render("client/pages/user/create-address", {
+    pageTitle: "Thông tin tài khoản",
+    User:User
+  });
+};
+
+//[GET] /user/changepassword
+module.exports.changePass = async (req, res) => {
+  res.render("client/pages/user/config-changepass", {
+    User:User,
+  },);
+};
+
+//[POST] /user/info
+module.exports.update =  (req,res,next)=> {
+  const day = req.body.day;
+  const month = req.body.month;
+  const year = req.body.year;
+  const dateOfBirth = new Date(year, month - 1, day)
+
+  const data={
+    ...req.body,
+    birthday:dateOfBirth,
+  }
+  User.updateOne({_id: req.params.id},data)
+      .then(()=>res.redirect("/user/info"))
+      .catch(next)
+}
+
+//[POST] user/update/address
+
+module.exports.update_address =  (req,res,next)=> {
+  const userId = req.params.id;
+  const mainAddressValue = req.body.mainAddress;
+  const idAdd=req.params.idAdd;
+  User.updateOne(
+      {
+        _id: userId,
+        "address.idAddress": idAdd, },
+      { $set: { 'address.$.mainAddress': mainAddressValue } }
+  )
+      .then(() => res.redirect("/user/address"))
+      .catch(next);
+}
+//[POST] user/:id/changepass
+module.exports.updatePassword = async  (req,res,next)=> {
+const newpass=req.body.newpassword;
+const confirmpassword=req.body.confirmpassword;
+const user = await User.findOne({ _id: req.params.id });
+const oldHashedPass=md5(req.body.password);
+if(newpass===confirmpassword&&oldHashedPass===user.password){
+const hashedPassword = md5(newpass);
+  try {
+    await User.updateOne({ _id: req.params.id }, { password: hashedPassword });
+    req.flash("success","Cập nhật mật khẩu thành công");
+    res.redirect("/user/changepassword");
+  } catch (error) {
+    next(error);
+  }
+}
+else{
+req.flash("error","Vui lòng nhập lại mật khẩu mới hoặc kiểm tra lại mật khẩu cũ");
+res.redirect("/user/changepassword");
+}
+}
+
+//[POST] user/id/address/create
+module.exports.newAdd = async (req,res,next)=> {
+  const userId = req.params.id;
+  try {
+    const addressObject = {
+      mainAddress:req.body.mainAddress,
+      isDefault: false,
+      idAddress: new mongoose.Types.ObjectId(), // Tạo một ObjectId mới
+    };
+    await User.updateOne(
+        { _id: userId },
+        { $push: { address: addressObject } }
+    );
+
+    res.redirect("/user/address");
+  } catch (error) {
+    next(error);
+  }
+}

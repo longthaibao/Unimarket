@@ -30,7 +30,7 @@ block main
             +sort()
 
     .card.mb-3
-      .card-header Danh sách
+      
         .card-body
           .row
             .col-8
@@ -119,16 +119,16 @@ block main
                   td
                     a(
                       href=`${prefixAdmin}/products/detail/${item.id}`
-                      class="btn btn-secondary btn-sm"
+                      class="btn btn-secondary btn-sm mx-1"
                       ) Chi tiết
                     if(role.permissions.includes("products_edit"))
                       a(
                         href=`${prefixAdmin}/products/edit/${item.id}`
-                        class="btn btn-warning btn-sm"
+                        class="btn btn-warning btn-sm mx-1"
                         ) Sửa
                     if(role.permissions.includes("products_delete"))
                       button(
-                        class="btn btn-danger btn-sm ml-1"
+                        class="btn btn-danger btn-sm mx-1"
                         button-delete
                         data-id=item.id
                       ) Xóa
