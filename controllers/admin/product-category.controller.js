@@ -2,6 +2,10 @@ const ProductCategory = require("../../models/product-category.model");
 
 const systemConfig = require("../../config/system");
 
+const filterStatusHelper = require("../../helpers/filterStatus");
+const searchHelper = require("../../helpers/search");
+const paginationHelper = require("../../helpers/pagination");
+
 const createTreeHelper = require("../../helpers/createTree");
 
 // [GET] /admin/products-category
@@ -93,6 +97,71 @@ module.exports.editPatch = async (req, res) => {
   req.body.position = parseInt(req.body.position);
 
   await ProductCategory.updateOne({ _id: id }, req.body);
+
+  res.redirect("back");
+};
+
+
+// [DELETE] /admin/products-category/delete/:id
+module.exports.deleteItem = async (req, res) => {
+  const id = req.params.id;
+
+  
+  await ProductCategory.updateOne(
+    { _id: id },
+    {
+      deleted: true,
+      // deletedAt: new Date(),
+      deletedBy: {
+        account_id: res.locals.user.id,
+        deletedAt: new Date(),
+      }
+    }
+  );
+
+  req.flash("success", `Đã xóa thành công danh mục sản phẩm!`);
+
+  res.redirect("back");
+};
+
+// [GET] /admin/products-category/detail/:id
+module.exports.detail = async (req, res) => {
+  // console.log("aaaaaa")
+  try {
+    const find = {
+      deleted: false,
+      _id: req.params.id
+    };
+
+    const productcategory = await ProductCategory.findOne(find);
+
+    console.log(productcategory);
+
+    res.render("admin/pages/products-category/detail", {
+      pageTitle: productcategory.title,
+      product: productcategory
+    });
+  } catch (error) {
+    res.redirect(`${systemConfig.prefixAdmin}/products-category`);
+  }
+};
+
+// [PATCH] /admin/products/change-status/:status/:id
+module.exports.changeStatus = async (req, res) => {
+  const status = req.params.status;
+  const id = req.params.id;
+
+  const updatedBy = {
+    account_id: res.locals.user.id,
+    updatedAt: new Date()
+  }
+
+  await ProductCategory.updateOne({ _id: id }, {
+    status: status,
+    $push: { updatedBy: updatedBy }
+  });
+
+  req.flash("success", "Cập nhật trạng thái thành công!");
 
   res.redirect("back");
 };
