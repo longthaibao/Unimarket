@@ -13,3 +13,12 @@ if(showAlert) {
   });
 }
 // End Show Alert
+
+function changeName(){
+  if($("#collapseButton").html()=="Thêm"){
+      $("#collapseButton").html("Ẩn");
+  }
+  else{
+      $("#collapseButton").html("Thêm");
+  }
+}
