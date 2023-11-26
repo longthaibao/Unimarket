@@ -1,9 +1,9 @@
-body {
+/* body {
   background-color: #F7FAFC;
-}
+} */
 
   .cart-detail {
-      background-color: #ffff;
+      background-color: #F7FAFC;
       box-sizing: border-box;
       padding: 10px;
   }
