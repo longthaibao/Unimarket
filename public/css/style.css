@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-/* body */
-body{
-  background-color: rgb(243, 243, 243);
-=======
 /*  Supports weights 100-900 */
 @import '@fontsource-variable/inter';
 
 body {
   background-color: #f7fafc;
   font-family: 'Inter Variable', sans-serif;
->>>>>>> 78db6db4dff0b9f6f61e6a557bd6c3a610a190fc
 }
 
 /* Header */
