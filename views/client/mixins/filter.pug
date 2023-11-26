@@ -9,27 +9,28 @@ mixin filter(category)
     p Theo danh mục
     each item in category
       .d-flex.flex-row.align-items-start
-        input.mt-1(type="checkbox")
+        input.mt-1(name="checkboxFilter" id=`${item.id}` type="checkbox" value = `facet-${item.id}`)
         p.ml-2 #{item.title}
+
   div(style="border: 1px solid #ddd; width: 80%")
   div.p-0.my-2
     p Theo trường
     div
       div.d-flex.flex-row.align-items-start
-        input.mt-1(type="checkbox")
+        input.mt-1(name="checkboxFilter" id="HCMUT" type="checkbox" value = "school-HCMUT")
         p.ml-2 HCMUT
       div.d-flex.flex-row.align-items-start
-        input.mt-1(type="checkbox")
+        input.mt-1(name="checkboxFilter" id="HCMUS" type="checkbox" value = "school-HCMUS")
         p.ml-2 HCMUS
       div.d-flex.flex-row.align-items-start
-        input.mt-1(type="checkbox")
+        input.mt-1(name="checkboxFilter" id="HCMUSSH" type="checkbox" value = "school-HCMUSSH")
         p.ml-2 HCMUSSH
       div.d-flex.flex-row.align-items-start
-        input.mt-1(type="checkbox")
+        input.mt-1(name="checkboxFilter" id="UEL" type="checkbox" value = "school-UEL")
         p.ml-2 UEL
     <div id="collapsible" class="collapse">
       div.d-flex.flex-row.align-items-start
-        input.mt-1(type="checkbox")
+        input.mt-1(name="checkboxFilter" id="HCMIU" type="checkbox" value = "school-HCMIU")
         p.ml-2 HCMIU
     </div>
     a.d-flex.flex-row.align-items-start(id="collapseButton" type="button" data-toggle="collapse" data-target="#collapsible" onclick="changeName()") Thêm
@@ -41,5 +42,5 @@ mixin filter(category)
       p.mt-1 &#8213;
       <input type="text" class="form-control" placeholder="&#8363; Đến" aria-label="maxPrice" aria-describedby="maxPriceInput" style="width: 40%" />
     div.d-flex.flex-column(style="width: 80%")
+      button.my-2.py-2(type="submitFilter" style="border: 0px; border-radius: 10px; background-color: #007bff; color: #ffffff" ) Áp dụng
       button.my-2.py-2(style="border: 0px; border-radius: 10px; background-color: #ffffff; color: #007bff") Thiết lập lại 
-      button.my-2.py-2(style="border: 0px; border-radius: 10px; background-color: #007bff; color: #ffffff") Áp dụng
