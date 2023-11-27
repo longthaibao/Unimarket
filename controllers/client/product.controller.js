@@ -1,6 +1,7 @@
 const Product = require("../../models/product.model");
 const ProductCategory = require("../../models/product-category.model");
 
+const paginationHelper = require("../../helpers/pagination");
 const productsHelper = require("../../helpers/products");
 const productsCategoryHelper = require("../../helpers/products-category");
 const filterPriceHelper = require("../../helpers/filterPrice");
@@ -28,9 +29,24 @@ module.exports.index = async (req, res) => {
     newProducts = productsHelper.priceNewProducts(filterPrice)
   } else newProducts = productsHelper.priceNewProducts(products);
 
+  // Pagination 
+  const countProducts = newProducts.length;
+  let objectPagination = paginationHelper(
+    {
+      currentPage: 1,
+      limitItems: 25,
+    },
+    req.query,
+    countProducts
+  );
+
+  newProducts = newProducts.slice(objectPagination.skip, objectPagination.skip + objectPagination.limitItems);
+  // End Pagination 
+
   res.render("client/pages/products/index", {
     pageTitle: "Danh sách sản phẩm",
     products: newProducts,
+    pagination: objectPagination, 
   });
 };
 
