@@ -4,6 +4,20 @@ const Order = require("../../models/order.model");
 
 const productsHelper = require("../../helpers/products");
 
+async function updateProductQuantity(productId, newQuantity) {
+  try {
+    // Cập nhật số lượng trong kho của sản phẩm với ID tương ứng
+    const product = await Product.findByIdAndUpdate(productId, { stock: newQuantity });
+
+    // Kiểm tra xem sản phẩm đã được cập nhật thành công hay không
+    if (!product) {
+      throw new Error('Không tìm thấy sản phẩm');
+    }
+  } catch (error) {
+    throw new Error('Đã xảy ra lỗi khi cập nhật số lượng');
+  }
+}
+
 // [GET] /checkout/
 module.exports.index = async (req, res) => {
   const cartId = req.cookies.cartId;
@@ -51,17 +65,29 @@ module.exports.order = async (req, res) => {
       product_id: product.product_id,
       price: 0,
       discountPercentage: 0,
-      quantity: product.quantity
+      quantity: product.quantity,
+      stock: 0
     };
 
     const productInfo = await Product.findOne({
       _id: product.product_id
-    }).select("price discountPercentage");
+    }).select("price discountPercentage stock");
 
     objectProduct.price = productInfo.price;
     objectProduct.discountPercentage = productInfo.discountPercentage;
 
+    objectProduct.stock = productInfo.stock - objectProduct.quantity;
+
     products.push(objectProduct);
+
+    try {
+      
+      // Xử lý cập nhật số lượng trong kho
+      await updateProductQuantity(objectProduct.product_id, objectProduct.stock);
+
+    } catch (error) {
+      res.status(500).send('Đã xảy ra lỗi khi cập nhật số lượng');
+    }
   }
 
   const orderInfo = {
