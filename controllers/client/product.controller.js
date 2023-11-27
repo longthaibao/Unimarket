@@ -117,8 +117,23 @@ module.exports.category = async (req, res) => {
     newProducts = productsHelper.priceNewProducts(filterPrice)
   } else newProducts = productsHelper.priceNewProducts(products);
 
+  // Pagination 
+  const countProducts = newProducts.length;
+  let objectPagination = paginationHelper(
+    {
+      currentPage: 1,
+      limitItems: 25,
+    },
+    req.query,
+    countProducts
+  );
+
+  newProducts = newProducts.slice(objectPagination.skip, objectPagination.skip + objectPagination.limitItems);
+  // End Pagination 
+
   res.render("client/pages/products/index", {
     pageTitle: category.title,
     products: newProducts,
+    pagination: objectPagination, 
   });
 };
