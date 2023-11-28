@@ -90,9 +90,9 @@ for (i = 0; i < cbs.length; i++) {
 
 function updateCheckboxFromURL() {
   let url = new URL(window.location.href);
-  
-  var array = url.href.split('&')
-  for (i = 1; i < array.length; i++) {
+  const [otherURL, qm] = url.href.split('?');
+  var array = qm.split('&');
+  for (i = 0; i < array.length; i++) {
     const [arrayKey, arrayValue] = array[i].split('=');
     if (arrayKey == "school") school.push(arrayValue);
     else if (arrayKey == "facet") facet.push(arrayValue);
@@ -121,89 +121,25 @@ function updateCheckboxFromURL() {
 
 const priceButton = document.querySelector('[name="buttonPrice"]');
 if(priceButton) {
-  
+  let url = new URL(window.location.href);
+
   priceButton.addEventListener("click", () => {
-    let url = new URL(window.location.href);
+    
 
     const minPrice = document.querySelector('[name="minPrice"]');
     const maxPrice = document.querySelector('[name="maxPrice"]');
     
-    // Check URL 
-    const [checkURL, remainURL] = url.href.split('&')
-    if (!remainURL) url.href += "?";
-
-    // Min Price 
     if (Number(minPrice.value) > 0) {
-      let Check = false;
-      let arrayMin = url.href.split('&');
-      for (i=0; i<arrayMin.length; i++) {
-        const [arrayMinKey, arrayMinValue] = arrayMin[i].split('=');
-        if (arrayMinKey == "minPrice") {
-          arrayMin[i] = "minPrice=" + minPrice.value;
-          Check = true;
-          break;
-        }
-      }
-      if (Check == false) {url.href += "&minPrice=" + minPrice.value;}
-      else url.href = arrayMin.join('&');
+      url.searchParams.set("minPrice", minPrice.value);
     } else {
-      let Check = false;
-      let valueDelete;
-      let arrayMin = url.href.split('&');
-      for (i=0; i<arrayMin.length; i++) {
-        const [arrayMinKey, arrayMinValue] = arrayMin[i].split('=');
-        if (arrayMinKey == "minPrice") {
-          valueDelete = arrayMin[i];
-          Check = true;
-          break;
-        }
-      }
-      if (Check = true) {
-        var indexToDelete = arrayMin.indexOf(valueDelete);
-        if (indexToDelete !== -1) {
-            arrayMin.splice(indexToDelete, 1);
-        }
-      }
-      minPriceValue = null;
-      url.href = arrayMin.join('&');
+      url.searchParams.delete("minPrice");
     }
-
-    // Max Price 
     if (Number(maxPrice.value) > 0) {
-      let Check = false;
-      let arrayMax = url.href.split('&');
-      for (i=0; i<arrayMax.length; i++) {
-        const [arrayMaxKey, arrayMaxValue] = arrayMax[i].split('=');
-        if (arrayMaxKey == "maxPrice") {
-          arrayMax[i] = "maxPrice=" + maxPrice.value;
-          Check = true;
-          break;
-        }
-      }
-      if (Check == false) {url.href += "&maxPrice=" + maxPrice.value;}
-      else url.href = arrayMax.join('&');
+      url.searchParams.set("maxPrice", maxPrice.value);
     } else {
-      let Check = false;
-      let valueMaxDelete;
-      let arrayMax = url.href.split('&');
-      for (i=0; i<arrayMax.length; i++) {
-        const [arrayMaxKey, arrayMaxValue] = arrayMax[i].split('=');
-        if (arrayMaxKey == "maxPrice") {
-          valueMaxDelete = arrayMax[i];
-          Check = true;
-          break;
-        }
-      }
-      if (Check = true) {
-        var indexToDelete = arrayMax.indexOf(valueMaxDelete);
-        if (indexToDelete !== -1) {
-            arrayMax.splice(indexToDelete, 1);
-        }
-      }
-      maxPriceValue = null;
-      url.href = arrayMax.join('&');
+      url.searchParams.delete("maxPrice");
     }
-
+    
     window.location.href = url.href;
   })
 }
@@ -212,8 +148,9 @@ if(priceButton) {
 // Clear Filter Button 
 const clearButton = document.querySelector('[name="clearFilter"]');
 if(clearButton) {
+  let url = new URL(window.location.href);
   clearButton.addEventListener("click", () => {
-    let url = new URL(window.location.href);
+    
     const [otherURL, qm] = url.href.split('?');
     url.href = otherURL;
     window.location.href = url.href;
@@ -233,7 +170,7 @@ if (buttonsPagination) {
       const page = button.getAttribute("button-pagination");
 
       url.searchParams.set("page", page);
-
+      
       window.location.href = url.href;
     });
   });
