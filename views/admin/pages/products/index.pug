@@ -36,11 +36,11 @@ block main
             .col-8
               if(role.permissions.includes("products_edit"))
                 +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
-            .col-4
+            .col-4 
               if(role.permissions.includes("products_create"))
                 a(
                   href=`${prefixAdmin}/products/create`
-                  class="btn btn-outline-success"
+                  class="btn btn-outline-primary"
                 ) + Thêm mới
 
           table(
