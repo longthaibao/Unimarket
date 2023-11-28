@@ -4,19 +4,7 @@ const Order = require("../../models/order.model");
 
 const productsHelper = require("../../helpers/products");
 
-async function updateProductQuantity(productId, newQuantity) {
-  try {
-    // Cập nhật số lượng trong kho của sản phẩm với ID tương ứng
-    const product = await Product.findByIdAndUpdate(productId, { stock: newQuantity });
-
-    // Kiểm tra xem sản phẩm đã được cập nhật thành công hay không
-    if (!product) {
-      throw new Error('Không tìm thấy sản phẩm');
-    }
-  } catch (error) {
-    throw new Error('Đã xảy ra lỗi khi cập nhật số lượng');
-  }
-}
+const productUpdateHelper = require("../../helpers/products");
 
 // [GET] /checkout/
 module.exports.index = async (req, res) => {
@@ -83,7 +71,7 @@ module.exports.order = async (req, res) => {
     try {
       
       // Xử lý cập nhật số lượng trong kho
-      await updateProductQuantity(objectProduct.product_id, objectProduct.stock);
+      await productUpdateHelper.updateProductQuantity(objectProduct.product_id, objectProduct.stock);
 
     } catch (error) {
       res.status(500).send('Đã xảy ra lỗi khi cập nhật số lượng');
