@@ -16,20 +16,20 @@ mixin filter(category)
     p Theo trường
     div
       div.d-flex.flex-row.align-items-start
-        input.mt-1(type="checkbox")
+        input.mt-1(type="checkbox" name="checkboxname[]")
         p.ml-2 HCMUT
       div.d-flex.flex-row.align-items-start
-        input.mt-1(type="checkbox")
+        input.mt-1(type="checkbox" name="checkboxname[]")
         p.ml-2 HCMUS
       div.d-flex.flex-row.align-items-start
-        input.mt-1(type="checkbox")
+        input.mt-1(type="checkbox" name="checkboxname[]")
         p.ml-2 HCMUSSH
       div.d-flex.flex-row.align-items-start
-        input.mt-1(type="checkbox")
+        input.mt-1(type="checkbox" name="checkboxname[]")
         p.ml-2 UEL
     <div id="collapsible" class="collapse">
       div.d-flex.flex-row.align-items-start
-        input.mt-1(type="checkbox")
+        input.mt-1(type="checkbox" name="checkboxname[]")
         p.ml-2 HCMIU
     </div>
     a.d-flex.flex-row.align-items-start(id="collapseButton" type="button" data-toggle="collapse" data-target="#collapsible" onclick="changeName()") Thêm
