@@ -51,6 +51,8 @@ router.post("/password/otp", controller.otpPasswordPost);
 
 router.get("/password/reset", controller.resetPassword);
 
+router.get("/purchase", controller.purchase);
+
 router.post(
     "/password/reset",
     validate.resetPasswordPost,
