@@ -11,6 +11,7 @@ const orderSchema = new mongoose.Schema(
     },
     products: [
       {
+        thumbnail: String,
         product_id: String,
         price: Number,
         discountPercentage: Number,
