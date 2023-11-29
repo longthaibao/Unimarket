@@ -98,9 +98,23 @@ module.exports.order = async (req, res) => {
 
 // [GET] /checkout/success/:orderId
 module.exports.success = async (req, res) => {
+ 
   const order = await Order.findOne({
     _id: req.params.orderId
   });
+
+  // Update User ID 
+  const user_id = req.cookies.tokenUser;
+  await Order.updateOne ( 
+    {
+      _id: req.params.orderId
+    },
+    {
+      $set: {
+        "user_id": user_id
+      }
+    }
+  )
 
   for (const product of order.products) {
     const productInfo = await Product.findOne({
