@@ -65,6 +65,16 @@ block main
           value=product.description
         ) #{product.description}
       div(class="form-group")
+        label(for="school") Trường
+        input(
+          type="text"
+          class="form-control"
+          id="school"
+          name="school"
+          required
+          value=product.school
+        )
+      div(class="form-group")
         label(for="price") Giá
         input(
           type="number"
