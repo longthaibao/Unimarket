@@ -41,10 +41,10 @@ block main
                           name="quantity"
                           value=item.quantity
                           min="1"
+                          max=item.productInfo.stock
                           product-id=item.product_id
                           style="width: 60px"
                         )
-                        //- Tao nghĩ chỗ input set max bằng một cái giá trị connect với database của product.stock
                       td #{item.totalPrice}đ
                       td
                         a(
