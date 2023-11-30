@@ -55,15 +55,15 @@ block main
                 th
                   input(type="checkbox" name="checkall")
                 th STT
-                th Hình ảnh
-                th Tiêu đề
-                th Giá
-                th Vị trí
-                th Số lượng
-                th Trạng thái
-                th Người tạo
-                th Người cập nhật
-                th Hành động
+                th(style = "text-align: center" ) Hình ảnh
+                th(style = "text-align: center" ) Tiêu đề
+                th(style = "text-align: center" ) Giá
+                //- th Vị trí
+                th(style = "text-align: center" ) Số lượng
+                th(style = "text-align: center" ) Trạng thái
+                th(style = "text-align: center" ) Người tạo
+                th(style = "text-align: center" ) Người cập nhật
+                th(style = "text-align: center" ) Hành động
 
             tbody
               each item, index in products
@@ -82,19 +82,13 @@ block main
                       width="100px"
                       height="auto"
                     )
-                  td #{item.title}
-                  td #{item.price} VND
-                  td #{item.position}
-                    //- input(
-                    //-   type="number"
-                    //-   value=item.position
-                    //-   style="width: 60px"
-                    //-   min="1"
-                    //-   name="position"
-                    //- )
+                  td(style = "text-align: center" )  #{item.title}
+                  td(style = "text-align: center" ) #{item.price} VND
+                  //- td #{item.position}
                     
-                  td #{item.stock}
-                  td
+                    
+                  td(style = "text-align: center") #{item.stock}
+                  td(style = "text-align: center" )
                     if(role.permissions.includes("products_edit"))
                       if(item.status == "active" && item.stock >0)
                         a(
@@ -123,7 +117,7 @@ block main
                       p #{updatedBy.accountFullName}
                       p
                         +formatDateTime(updatedBy.updatedAt)                  
-                  td
+                  td(style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap")
                     a(
                       href=`${prefixAdmin}/products/detail/${item.id}`
                       class="btn btn-secondary btn-sm mx-1"
