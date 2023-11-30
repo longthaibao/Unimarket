@@ -314,4 +314,5 @@ module.exports.purchase = async (req, res) => {
     pageTitle: "Đơn mua",
     purchase: purchase,
   })
+
 }

@@ -54,3 +54,9 @@ block main
           p Số lượng: <b>#{statistic.user.total}</b>
           p Hoạt động: <b>#{statistic.user.active}</b>
           p Dừng hoạt động: <b>#{statistic.user.inactive}</b>
+    .col-12 
+      .card.mb-4
+        .card-header Lịch sử bán hàng
+        .card-body
+          each item in order 
+            p #{item}
