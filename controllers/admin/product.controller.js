@@ -266,6 +266,7 @@ module.exports.editPatch = async (req, res) => {
   req.body.discountPercentage = parseInt(req.body.discountPercentage);
   req.body.stock = parseInt(req.body.stock);
   req.body.position = parseInt(req.body.position);
+  req.body.status = parseInt(req.body.status);
 
   if(req.file) {
     req.body.thumbnail = `/uploads/${req.file.filename}`;

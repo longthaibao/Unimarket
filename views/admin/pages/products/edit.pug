@@ -3,6 +3,9 @@ include ../../mixins/alert.pug
 include ../../mixins/select-tree.pug
 
 block main
+  - if(product.stock === 0 && product.status !== 'inactive')
+      - product.status = 'inactive'
+  
   if(role.permissions.includes("products_edit"))
     +alert-success(5000)
     +alert-error(5000)
@@ -150,3 +153,27 @@ block main
         ) Cập nhật
 
     script(src="/admin/js/product.js")
+
+    
+    
+    //- script.
+    //-   const form = document.getElementById('form-edit-product');
+    //-   const productStock = ${product.stock};
+
+    //-   form.addEventListener('submit', (event) => {
+    //-     if (productStock === 0 && product.status !== 'inactive') {
+    //-       product.status = 'inactive';
+    //-       document.querySelector('input[name="status"][value="inactive"]').checked = true;
+    //-       //- const action = path + `/${statusChange}/${id}?_method=PATCH`;
+          
+          
+    //-       setTimeout(() => {
+    //-         form.submit();
+    //-       }, 100); // Adjust the delay time (in milliseconds) as needed
+          
+    //-       // Prevent the default form submission to avoid interference with the second submission
+    //-       event.preventDefault();
+    //-     }
+    //-   });
+
+      

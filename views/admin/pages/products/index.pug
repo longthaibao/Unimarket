@@ -8,10 +8,13 @@ include ../../mixins/sort.pug
 include ../../mixins/moment.pug
 
 block main
+
   if(role.permissions.includes("products_view"))
     +alert-success(5000)
 
-    h1 Danh sách sản phẩm
+  
+
+    //- h1 Danh sách sản phẩm
 
     .card.mb-3
       .card-header Bộ lọc và Tìm kiếm
@@ -56,6 +59,7 @@ block main
                 th Tiêu đề
                 th Giá
                 th Vị trí
+                th Số lượng
                 th Trạng thái
                 th Người tạo
                 th Người cập nhật
@@ -88,9 +92,10 @@ block main
                       min="1"
                       name="position"
                     )
+                  td #{item.stock}
                   td
                     if(role.permissions.includes("products_edit"))
-                      if(item.status == "active")
+                      if(item.status == "active" && item.stock >0)
                         a(
                           href="javascript:;"
                           data-status=item.status
@@ -98,6 +103,7 @@ block main
                           button-change-status
                           class="badge badge-success"
                         ) Hoạt động
+                      
                       else
                         a(
                           href="javascript:;"
