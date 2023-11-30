@@ -1,21 +1,52 @@
 const Product = require("../../models/product.model");
 const ProductCategory = require("../../models/product-category.model");
 
+const paginationHelper = require("../../helpers/pagination");
 const productsHelper = require("../../helpers/products");
 const productsCategoryHelper = require("../../helpers/products-category");
+const filterPriceHelper = require("../../helpers/filterPrice");
+
 
 // [GET] /products
 module.exports.index = async (req, res) => {
-  const products = await Product.find({
-    status: "active",
-    deleted: false,
-  }).sort({ position: "desc" });
+  let match = {};
+  let newProducts = [];
 
-  const newProducts = productsHelper.priceNewProducts(products);
+  if (req.query.school) {
+    match.school = new RegExp(req.query.school, "i");
+  }
+
+  if (req.query.facet) {
+    match.product_category_id = req.query.facet;
+  }
+  match.deleted = false;
+  match.status = "active";
+
+  const products = await Product.find(match).sort({ position: "desc" });
+
+  if (req.query.minPrice || req.query.maxPrice) {
+    let filterPrice = filterPriceHelper(products, req.query.minPrice, req.query.maxPrice);
+    newProducts = productsHelper.priceNewProducts(filterPrice)
+  } else newProducts = productsHelper.priceNewProducts(products);
+
+  // Pagination 
+  const countProducts = newProducts.length;
+  let objectPagination = paginationHelper(
+    {
+      currentPage: 1,
+      limitItems: 25,
+    },
+    req.query,
+    countProducts
+  );
+
+  newProducts = newProducts.slice(objectPagination.skip, objectPagination.skip + objectPagination.limitItems);
+  // End Pagination 
 
   res.render("client/pages/products/index", {
     pageTitle: "Danh sách sản phẩm",
     products: newProducts,
+    pagination: objectPagination, 
   });
 };
 
@@ -63,15 +94,46 @@ module.exports.category = async (req, res) => {
 
   const listSubCategoryId = listSubCategory.map(item => item.id);
 
-  const products = await Product.find({
-    product_category_id: { $in: [category.id, ...listSubCategoryId] },
-    deleted: false
-  }).sort({ position: "desc" });
+  // Filter
+  let match = {};
+  let newProducts = [];
 
-  const newProducts = productsHelper.priceNewProducts(products);
+  if (req.query.school) {
+    match.school = new RegExp(req.query.school, "i");
+  }
+
+  if (req.query.facet) {
+    match.product_category_id = req.query.facet;
+  }
+  match.deleted = false;
+  match.status = "active";
+  match.product_category_id = { $in: [category.id, ...listSubCategoryId] }
+  // End Filter 
+
+  const products = await Product.find(match).sort({ position: "desc" });
+
+  if (req.query.minPrice || req.query.maxPrice) {
+    let filterPrice = filterPriceHelper(products, req.query.minPrice, req.query.maxPrice);
+    newProducts = productsHelper.priceNewProducts(filterPrice)
+  } else newProducts = productsHelper.priceNewProducts(products);
+
+  // Pagination 
+  const countProducts = newProducts.length;
+  let objectPagination = paginationHelper(
+    {
+      currentPage: 1,
+      limitItems: 25,
+    },
+    req.query,
+    countProducts
+  );
+
+  newProducts = newProducts.slice(objectPagination.skip, objectPagination.skip + objectPagination.limitItems);
+  // End Pagination 
 
   res.render("client/pages/products/index", {
     pageTitle: category.title,
     products: newProducts,
+    pagination: objectPagination, 
   });
 };

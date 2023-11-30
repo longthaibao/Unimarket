@@ -1,7 +1,9 @@
 const md5 = require("md5");
+
 const User = require("../../models/user.model");
 const ForgotPassword = require("../../models/forgot-password.route");
 const Cart = require("../../models/cart.model");
+const Order = require("../../models/order.model");
 const mongoose = require("mongoose");
 
 
@@ -246,7 +248,6 @@ module.exports.update =  (req,res,next)=> {
 }
 
 //[POST] user/update/address
-
 module.exports.update_address =  (req,res,next)=> {
   const userId = req.params.id;
   const mainAddressValue = req.body.mainAddress;
@@ -260,26 +261,27 @@ module.exports.update_address =  (req,res,next)=> {
       .then(() => res.redirect("/user/address"))
       .catch(next);
 }
+
 //[POST] user/:id/changepass
 module.exports.updatePassword = async  (req,res,next)=> {
-const newpass=req.body.newpassword;
-const confirmpassword=req.body.confirmpassword;
-const user = await User.findOne({ _id: req.params.id });
-const oldHashedPass=md5(req.body.password);
-if(newpass===confirmpassword&&oldHashedPass===user.password){
-const hashedPassword = md5(newpass);
-  try {
-    await User.updateOne({ _id: req.params.id }, { password: hashedPassword });
-    req.flash("success","Cập nhật mật khẩu thành công");
-    res.redirect("/user/changepassword");
-  } catch (error) {
-    next(error);
+  const newpass=req.body.newpassword;
+  const confirmpassword=req.body.confirmpassword;
+  const user = await User.findOne({ _id: req.params.id });
+  const oldHashedPass=md5(req.body.password);
+  if(newpass===confirmpassword&&oldHashedPass===user.password){
+  const hashedPassword = md5(newpass);
+    try {
+      await User.updateOne({ _id: req.params.id }, { password: hashedPassword });
+      req.flash("success","Cập nhật mật khẩu thành công");
+      res.redirect("/user/changepassword");
+    } catch (error) {
+      next(error);
+    }
   }
-}
-else{
-req.flash("error","Vui lòng nhập lại mật khẩu mới hoặc kiểm tra lại mật khẩu cũ");
-res.redirect("/user/changepassword");
-}
+  else{
+  req.flash("error","Vui lòng nhập lại mật khẩu mới hoặc kiểm tra lại mật khẩu cũ");
+  res.redirect("/user/changepassword");
+  }
 }
 
 //[POST] user/id/address/create
@@ -300,4 +302,16 @@ module.exports.newAdd = async (req,res,next)=> {
   } catch (error) {
     next(error);
   }
+}
+
+//[GET] user/purchase
+module.exports.purchase = async (req, res) => {
+  const purchase = await Order.find({
+    user_id: req.cookies.tokenUser
+  })
+
+  res.render("client/pages/user/purchase", {
+    pageTitle: "Đơn mua",
+    purchase: purchase,
+  })
 }

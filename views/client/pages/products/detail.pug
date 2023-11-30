@@ -14,7 +14,9 @@ block main
               if (product.priceNew)
                 div(class="inner-price-new") #{product.priceNew}đ
               if (product.price)
-              div(class="inner-price-old") #{product.price}đ
+                div(class="inner-price-old") #{product.price}đ
+              if (product.discountPercentage)
+                div(class="inner-percent") Giảm tới <span>#{product.discountPercentage}$</span>
             
             form(
               action=`/cart/add/${product.id}`
@@ -37,11 +39,13 @@ block main
                   span.icon
                     i(class="fa-solid fa-cart-shopping")
 
-            if (product.discountPercentage)
-              div(class="inner-percent") Giảm tới <span>#{product.discountPercentage}$</span>
+            
 
             if (product.stock)
               div(class="inner-stock") Còn lại <span>#{product.stock}</span> sản phẩm
+            else 
+              .inner-stock 
+                span(class="border border-primary bg-primary") Hết hàng!
             
             if (product.category)
               div(class="inner-category")
