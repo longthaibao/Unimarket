@@ -16,7 +16,7 @@ module.exports.index = async (req, res) => {
       const productId = item.product_id;
       const productInfo = await Product.findOne({
         _id: productId,
-      }).select("title thumbnail slug price discountPercentage");
+      }).select("title thumbnail slug price discountPercentage stock");
 
       productInfo.priceNew = productsHelper.priceNewProduct(productInfo);
 
@@ -109,22 +109,44 @@ module.exports.delete = async (req, res) => {
 module.exports.update = async (req, res) => {
   const cartId = req.cookies.cartId;
   const productId = req.params.productId;
-  const quantity = req.params.quantity;
+  // const quantity = par req.body.quantity;
+  const quantity = parseInt(req.params.quantity);
 
-  await Cart.updateOne(
-    {
-      _id: cartId,
-      "products.product_id": productId,
-    },
-    {
-      $set: {
-        "products.$.quantity": quantity,
-      },
+  const cart = await Cart.findOne({
+    _id: cartId,
+  });
+
+  if (cart.products.length > 0) {
+    for (const item of cart.products) {
+      const productId = item.product_id;
+      const productInfo = await Product.findOne({
+        _id: productId,
+      }).select("stock");
+
+      if(quantity > productInfo.stock) {
+
+        req.flash("error", "Nhập quá số lượng trong kho");
+
+        res.redirect("back");
+      }
+      else {
+        await Cart.updateOne(
+          {
+            _id: cartId,
+            "products.product_id": productId,
+          },
+          {
+            $set: {
+              "products.$.quantity": quantity,
+            },
+          }
+        );
+      
+        req.flash("success", "Cập nhật số lượng thành công!");
+        
+        res.redirect("back");
+      }
     }
-  );
-
-  req.flash("success", "Cập nhật số lượng thành công!");
-  
-  res.redirect("back");
+  }
 }
 
