@@ -29,7 +29,7 @@ block main
       .card-header Sắp xếp
       .card-body
         .row
-          .col-4
+          .col-md-5.col-lg-4.col-sm-6
             +sort()
 
     .card.mb-3
@@ -39,7 +39,7 @@ block main
             .col-8
               if(role.permissions.includes("products_edit"))
                 +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
-            .col-4 
+            .col-4.d-flex.flex-column.justify-content-start.align-items-end
               if(role.permissions.includes("products_create"))
                 a(
                   href=`${prefixAdmin}/products/create`
@@ -83,15 +83,16 @@ block main
                       height="auto"
                     )
                   td #{item.title}
-                  td #{item.price}$
-                  td
-                    input(
-                      type="number"
-                      value=item.position
-                      style="width: 60px"
-                      min="1"
-                      name="position"
-                    )
+                  td #{item.price} VND
+                  td #{item.position}
+                    //- input(
+                    //-   type="number"
+                    //-   value=item.position
+                    //-   style="width: 60px"
+                    //-   min="1"
+                    //-   name="position"
+                    //- )
+                    
                   td #{item.stock}
                   td
                     if(role.permissions.includes("products_edit"))

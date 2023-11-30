@@ -126,26 +126,26 @@ block main
           min="1"
           value=product.position
         )
-      div(class="form-group form-check form-check-inline")
-        input(
-          type="radio"
-          class="form-check-input"
-          id="statusActive"
-          name="status"
-          value="active"
-          checked=(product.status == "active" ? true : false)
-        )
-        label(for="statusActive" class="form-check-label") Hoạt động
-      div(class="form-group form-check form-check-inline")
-        input(
-          type="radio"
-          class="form-check-input"
-          id="statusInActive"
-          name="status"
-          value="inactive"
-          checked=(product.status == "inactive" ? true : false)
-        )
-        label(for="statusInActive" class="form-check-label") Dừng hoạt động
+      //- div(class="form-group form-check form-check-inline")
+      //-   input(
+      //-     type="radio"
+      //-     class="form-check-input"
+      //-     id="statusActive"
+      //-     name="status"
+      //-     value="active"
+      //-     checked=(product.status == "active" ? true : false)
+      //-   )
+      //-   label(for="statusActive" class="form-check-label") Hoạt động
+      //- div(class="form-group form-check form-check-inline")
+      //-   input(
+      //-     type="radio"
+      //-     class="form-check-input"
+      //-     id="statusInActive"
+      //-     name="status"
+      //-     value="inactive"
+      //-     checked=(product.status == "inactive" ? true : false)
+      //-   )
+      //-   label(for="statusInActive" class="form-check-label") Dừng hoạt động
       div(class="form-group")
         button(
           type="submit"
