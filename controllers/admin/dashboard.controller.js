@@ -2,6 +2,7 @@ const ProductCategory = require("../../models/product-category.model");
 const Product         = require("../../models/product.model");
 const Account         = require("../../models/account.model");
 const User            = require("../../models/user.model");
+const Order           = require("../../models/order.model")
 // [GET] /admin/dashboard
 module.exports.dashboard = async (req, res) => {
     const statistic = {
@@ -83,14 +84,11 @@ module.exports.dashboard = async (req, res) => {
       deleted:false
     });
 
-
-
-
-
-
+    const order = await Order.find();
 
     res.render("admin/pages/dashboard/index", {
         pageTitle: "Trang tổng quan",
-        statistic: statistic
+        statistic: statistic,
+        order: order
       });
     }
