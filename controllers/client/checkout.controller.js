@@ -51,20 +51,25 @@ module.exports.order = async (req, res) => {
   for(const product of cart.products) {
     const objectProduct = {
       product_id: product.product_id,
+      title: product.title,
       price: 0,
       discountPercentage: 0,
+      priceNew: 0,
       quantity: product.quantity,
+      totalPrice: 0,
       stock: 0,
       thumbnail: ''
     };
 
     const productInfo = await Product.findOne({
       _id: product.product_id
-    }).select("price discountPercentage stock thumbnail");
+    }).select("price discountPercentage title stock thumbnail");
 
     objectProduct.price = productInfo.price;
     objectProduct.discountPercentage = productInfo.discountPercentage;
-
+    objectProduct.priceNew = productInfo.price * (1 - productInfo.discountPercentage / 100);
+    objectProduct.totalPrice = objectProduct.quantity * objectProduct.priceNew;
+    objectProduct.title = productInfo.title;
     objectProduct.stock = productInfo.stock - objectProduct.quantity;
     objectProduct.thumbnail = productInfo.thumbnail;
 
@@ -80,10 +85,13 @@ module.exports.order = async (req, res) => {
     }
   }
 
+  totalPrice = products.reduce((sum, item) => sum + item.totalPrice, 0);
+
   const orderInfo = {
     cart_id: cartId,
     userInfo: userInfo,
     products: products,
+    totalPrice: totalPrice,
   };
 
   const order = new Order(orderInfo);
