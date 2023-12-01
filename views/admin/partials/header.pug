@@ -3,7 +3,7 @@ include ../mixins/sub-menu.pug
 
 header.header
   .container-fluid
-    .row.align-items-center
+    .row.align-items-center.d-flex.justify-content-between
       .col-6
         .inner-logo.d-flex.flex-row.align-items-center
           a(href="/admin/dashboard")
@@ -14,8 +14,8 @@ header.header
 
       
 
-      .col-6
-        div(class="d-flex justify-content-end mr-4")
+      .div
+        div(class="d-flex justify-content-end")
           div(class="d-flex flex-column justify-content-center align-items-center")
             a(
               href=`${prefixAdmin}/my-account`

@@ -5,6 +5,8 @@
   position: sticky;
   top: 0;
 	z-index: 999;
+  width: 90%;
+  left: 5%;
 }
 
 .header .inner-logo a {
@@ -37,6 +39,7 @@
 /* End Body */
 
 /* option navbar*/
+
 .navbar-light .navbar-nav .nav-link {
   color: rgb(0, 0, 0);
 }

@@ -3,6 +3,9 @@ include ../../mixins/alert.pug
 include ../../mixins/select-tree.pug
 
 block main
+  - if(product.stock === 0 && product.status !== 'inactive')
+      - product.status = 'inactive'
+  
   if(role.permissions.includes("products_edit"))
     +alert-success(5000)
     +alert-error(5000)
@@ -133,26 +136,26 @@ block main
           min="1"
           value=product.position
         )
-      div(class="form-group form-check form-check-inline")
-        input(
-          type="radio"
-          class="form-check-input"
-          id="statusActive"
-          name="status"
-          value="active"
-          checked=(product.status == "active" ? true : false)
-        )
-        label(for="statusActive" class="form-check-label") Hoạt động
-      div(class="form-group form-check form-check-inline")
-        input(
-          type="radio"
-          class="form-check-input"
-          id="statusInActive"
-          name="status"
-          value="inactive"
-          checked=(product.status == "inactive" ? true : false)
-        )
-        label(for="statusInActive" class="form-check-label") Dừng hoạt động
+      //- div(class="form-group form-check form-check-inline")
+      //-   input(
+      //-     type="radio"
+      //-     class="form-check-input"
+      //-     id="statusActive"
+      //-     name="status"
+      //-     value="active"
+      //-     checked=(product.status == "active" ? true : false)
+      //-   )
+      //-   label(for="statusActive" class="form-check-label") Hoạt động
+      //- div(class="form-group form-check form-check-inline")
+      //-   input(
+      //-     type="radio"
+      //-     class="form-check-input"
+      //-     id="statusInActive"
+      //-     name="status"
+      //-     value="inactive"
+      //-     checked=(product.status == "inactive" ? true : false)
+      //-   )
+      //-   label(for="statusInActive" class="form-check-label") Dừng hoạt động
       div(class="form-group")
         button(
           type="submit"
@@ -160,3 +163,27 @@ block main
         ) Cập nhật
 
     script(src="/admin/js/product.js")
+
+    
+    
+    //- script.
+    //-   const form = document.getElementById('form-edit-product');
+    //-   const productStock = ${product.stock};
+
+    //-   form.addEventListener('submit', (event) => {
+    //-     if (productStock === 0 && product.status !== 'inactive') {
+    //-       product.status = 'inactive';
+    //-       document.querySelector('input[name="status"][value="inactive"]').checked = true;
+    //-       //- const action = path + `/${statusChange}/${id}?_method=PATCH`;
+          
+          
+    //-       setTimeout(() => {
+    //-         form.submit();
+    //-       }, 100); // Adjust the delay time (in milliseconds) as needed
+          
+    //-       // Prevent the default form submission to avoid interference with the second submission
+    //-       event.preventDefault();
+    //-     }
+    //-   });
+
+      

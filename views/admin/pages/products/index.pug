@@ -8,10 +8,13 @@ include ../../mixins/sort.pug
 include ../../mixins/moment.pug
 
 block main
+
   if(role.permissions.includes("products_view"))
     +alert-success(5000)
 
-    h1 Danh sách sản phẩm
+  
+
+    //- h1 Danh sách sản phẩm
 
     .card.mb-3
       .card-header Bộ lọc và Tìm kiếm
@@ -26,7 +29,7 @@ block main
       .card-header Sắp xếp
       .card-body
         .row
-          .col-4
+          .col-md-5.col-lg-4.col-sm-6
             +sort()
 
     .card.mb-3
@@ -36,7 +39,7 @@ block main
             .col-8
               if(role.permissions.includes("products_edit"))
                 +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
-            .col-4 
+            .col-4.d-flex.flex-column.justify-content-start.align-items-end
               if(role.permissions.includes("products_create"))
                 a(
                   href=`${prefixAdmin}/products/create`
@@ -52,14 +55,15 @@ block main
                 th
                   input(type="checkbox" name="checkall")
                 th STT
-                th Hình ảnh
-                th Tiêu đề
-                th Giá
-                th Vị trí
-                th Trạng thái
-                th Người tạo
-                th Người cập nhật
-                th Hành động
+                th(style = "text-align: center" ) Hình ảnh
+                th(style = "text-align: center" ) Tiêu đề
+                th(style = "text-align: center" ) Giá
+                //- th Vị trí
+                th(style = "text-align: center" ) Số lượng
+                th(style = "text-align: center" ) Trạng thái
+                th(style = "text-align: center" ) Người tạo
+                th(style = "text-align: center" ) Người cập nhật
+                th(style = "text-align: center" ) Hành động
 
             tbody
               each item, index in products
@@ -78,19 +82,15 @@ block main
                       width="100px"
                       height="auto"
                     )
-                  td #{item.title}
-                  td #{item.price}$
-                  td
-                    input(
-                      type="number"
-                      value=item.position
-                      style="width: 60px"
-                      min="1"
-                      name="position"
-                    )
-                  td
+                  td(style = "text-align: center" )  #{item.title}
+                  td(style = "text-align: center" ) #{item.price} VND
+                  //- td #{item.position}
+                    
+                    
+                  td(style = "text-align: center") #{item.stock}
+                  td(style = "text-align: center" )
                     if(role.permissions.includes("products_edit"))
-                      if(item.status == "active")
+                      if(item.status == "active" && item.stock >0)
                         a(
                           href="javascript:;"
                           data-status=item.status
@@ -98,6 +98,7 @@ block main
                           button-change-status
                           class="badge badge-success"
                         ) Hoạt động
+                      
                       else
                         a(
                           href="javascript:;"
@@ -116,7 +117,7 @@ block main
                       p #{updatedBy.accountFullName}
                       p
                         +formatDateTime(updatedBy.updatedAt)                  
-                  td
+                  td(style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap")
                     a(
                       href=`${prefixAdmin}/products/detail/${item.id}`
                       class="btn btn-secondary btn-sm mx-1"
