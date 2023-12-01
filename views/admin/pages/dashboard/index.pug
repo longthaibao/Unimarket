@@ -1,4 +1,5 @@
 extends ../../layouts/default.pug
+include ../../mixins/pagination.pug
 
 block main
   h1 Trang tổng quan
@@ -57,6 +58,39 @@ block main
     .col-12 
       .card.mb-4
         .card-header Lịch sử bán hàng
-        .card-body
-          each item in order 
-            p #{item}
+        .card-body 
+          .row.d-flex.justify-content-center
+            .col-2 
+              p Tên người mua 
+            .col-3
+              p ID mua hàng
+            .col-2
+              p Hình ảnh 
+            .col-1
+              p Số lượng
+            .col-2
+              p Ngày mua 
+            .col
+              p Trạng thái
+
+          .div.my-2(style="border: 1px solid #ddd")
+
+          each item in order
+            each product in item.products
+              .row.d-flex.justify-content-center
+                .col-2 
+                  p #{item.userInfo.fullName}
+                .col-3
+                  p #{item._id}
+                .col-2
+                  img.my-2(src=product.thumbnail, style="width: 100px;")
+                .col-1
+                  p #{product.quantity}    
+                .col-2
+                  - var date = item.createdAt.toLocaleDateString("vi-VN");
+                  p #{date} 
+                .col
+                  p.p-2(style="background-color: #00c292; color: #ffffff; border-radius: 8px; width: fit-content") Thanh toán
+
+              .div.my-2(style="border: 1px solid #ddd")
+      +pagination(pagination)
