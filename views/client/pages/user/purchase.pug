@@ -2,6 +2,7 @@ extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 include ../../mixins/menu
 include ../../mixins/info-config
+include ../../mixins/pagination.pug
 
 block main
   .container.my-3
@@ -35,7 +36,5 @@ block main
                       h5.m-0(style="") Thành tiền: &#8363;#{item.totalPrice}
                     .col.d-flex.justify-content-end.p-0
                       button(style="background-color: #027BFF; color: #ffffff; padding: 10px 25px; border: 0px; border-radius: 3px;") Mua lại
-                    
-        //- h4 Đơn hàng của tôi
-        //- each item in purchase 
-        //-   p #{item}
+        div.mt-2              
+          +pagination(pagination)

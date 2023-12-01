@@ -2,10 +2,9 @@ const ProductCategory = require("../../models/product-category.model");
 const Product         = require("../../models/product.model");
 const Account         = require("../../models/account.model");
 const User            = require("../../models/user.model");
-const Order           = require("../../models/order.model")
-const filterStatusHelper = require("../../helpers/filterStatus");
-const searchHelper = require("../../helpers/search");
+const Order           = require("../../models/order.model");
 const paginationHelper = require("../../helpers/pagination");
+
 // [GET] /admin/dashboard
 module.exports.dashboard = async (req, res) => {
     const statistic = {
