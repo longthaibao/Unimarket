@@ -33,9 +33,19 @@ mixin menu(user)
             document.addEventListener('DOMContentLoaded', function () {
                 const options = document.querySelectorAll('.option');
                 const activeOptionId = localStorage.getItem('activeOption');
+                if (!activeOptionId) {
+                    activeOptionId = "info";
+                    localStorage.setItem('activeOption', activeOptionId);
+                }
+                function handleOptionClick(opt) {
+                    var href = opt.getAttribute('href');
+                    toggleActive(opt);
+                    if (href) {
+                        window.location.href = href;
+                    }
+                }
                 options.forEach(function (opt) {
                     opt.addEventListener("click", function(e) {
-                    console.log(activeOptionId);
                     e.preventDefault();
                     var href = opt.getAttribute('href');
                      toggleActive(opt);
@@ -43,6 +53,19 @@ mixin menu(user)
                     window.location.href = href;
                     }
                     });
+                });
+
+                //- Thêm xử lí sự kiện khi click ra ngoài menu
+                document.addEventListener("click", function (e) {
+                    var target = e.target;
+                    if (!target.closest('.menu')) {
+                       var options = document.querySelectorAll('.option');
+                        options.forEach(function (opt) {
+                            opt.classList.remove('active');
+                        });
+                        var defaultOption = document.getElementById("info");
+                        handleOptionClick(defaultOption);
+                    }
                 });
                 options.forEach(function (opt) {
                     if (opt.id === activeOptionId) {
