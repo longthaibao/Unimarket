@@ -32,7 +32,7 @@ mixin menu(user)
             }
             document.addEventListener('DOMContentLoaded', function () {
                 const options = document.querySelectorAll('.option');
-                const activeOptionId = localStorage.getItem('activeOption');
+                let activeOptionId = localStorage.getItem('activeOption');
                 if (!activeOptionId) {
                     activeOptionId = "info";
                     localStorage.setItem('activeOption', activeOptionId);
