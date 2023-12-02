@@ -54,21 +54,21 @@ mixin menu(user)
                 });
 
                 //- Thêm xử lí sự kiện khi click ra ngoài menu
-                document.addEventListener("click", function (e) {
-                    var target = e.target;
-                    if (!target.closest('.menu')) {
-                       var options = document.querySelectorAll('.option');
-                        options.forEach(function (opt) {
-                            opt.classList.remove('active');
-                        });
-                        var defaultOption = document.getElementById("info");
-                        handleOptionClick(defaultOption);
-                    }
-                });
-                options.forEach(function (opt) {
-                    if (opt.id === activeOptionId) {
-                        toggleActive(opt);
-                    }
-                });
+                //- document.addEventListener("click", function (e) {
+                //-     var target = e.target;
+                //-     if (!target.closest('.menu')) {
+                //-        var options = document.querySelectorAll('.option');
+                //-         options.forEach(function (opt) {
+                //-             opt.classList.remove('active');
+                //-         });
+                //-         var defaultOption = document.getElementById("info");
+                //-         handleOptionClick(defaultOption);
+                //-     }
+                //- });
+                //- options.forEach(function (opt) {
+                //-     if (opt.id === activeOptionId) {
+                //-         toggleActive(opt);
+                //-     }
+                //- });
 
             }); 

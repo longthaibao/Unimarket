@@ -16,15 +16,11 @@ const orderSchema = new mongoose.Schema(
         title: String,
         price: Number,
         discountPercentage: Number,
-// <<<<<<< Long
-//         quantity: Number,
-//       },
-// =======
         priceNew: Number,
         totalPrice: Number,
-        quantity: Number
+        quantity: Number,
+        slug: String,
       }
-// >>>>>>> main
     ],
     totalPrice: Number,
     deleted: {

@@ -4,7 +4,8 @@ const createTreeHelper = require("../../helpers/createTree");
 
 module.exports.category = async (req, res, next) => {
   const productsCategory = await ProductCategory.find({
-    deleted: false
+    deleted: false,
+    status: "active",
   });
 
   const newProductsCategory = createTreeHelper.tree(productsCategory);
