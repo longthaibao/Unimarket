@@ -1,8 +1,8 @@
 extends ../../layouts/default.pug
 
 block main
-  if(role.permissions.includes("roles_view"))
-    .container
+  .container
+    if(role.permissions.includes("roles_view"))
       h1(class="mb-4") Nhóm quyền
 
       .card.mb-3

@@ -150,9 +150,6 @@ module.exports.changeMulti = async (req, res) => {
         let [id, position] = item.split("-");
         position = parseInt(position);
 
-        // console.log(id);
-        // console.log(position);
-
         await Product.updateOne(
           { _id: id },
           {
@@ -299,8 +296,6 @@ module.exports.detail = async (req, res) => {
     };
 
     const product = await Product.findOne(find);
-
-    console.log(product);
 
     res.render("admin/pages/products/detail", {
       pageTitle: product.title,

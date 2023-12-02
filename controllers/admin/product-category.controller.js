@@ -118,7 +118,6 @@ module.exports.deleteItem = async (req, res) => {
 
 // [GET] /admin/products-category/detail/:id
 module.exports.detail = async (req, res) => {
-  // console.log("aaaaaa")
   try {
     const find = {
       deleted: false,
@@ -126,8 +125,6 @@ module.exports.detail = async (req, res) => {
     };
 
     const productcategory = await ProductCategory.findOne(find);
-
-    console.log(productcategory);
 
     res.render("admin/pages/products-category/detail", {
       pageTitle: productcategory.title,

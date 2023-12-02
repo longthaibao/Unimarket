@@ -11,11 +11,6 @@ block main
   .container
     if(role.permissions.includes("products_view"))
       +alert-success(5000)
-
-    
-
-      //- h1 Danh sách sản phẩm
-
       .card.mb-3
         .card-header Bộ lọc và Tìm kiếm
         .card-body
@@ -82,8 +77,8 @@ block main
                         width="100px"
                         height="auto"
                       )
-                    td(style = "text-align: center" )  #{item.title}
-                    td(style = "text-align: center" ) #{item.price} VND
+                    td(style = "text-align: center; width: 150px;" )  #{item.title}
+                    td(style = "text-align: center" ) &#8363;#{item.price}
                     //- td #{item.position}
                       
                       
@@ -107,11 +102,11 @@ block main
                             button-change-status
                             class="badge badge-danger"
                           ) Dừng hoạt động
-                    td
+                    td(style = "text-align: center; width: 150px;")
                       p #{item.accountFullName}
                       p
                         +formatDate(item.createdBy.createdAt)
-                    td
+                    td(style = "text-align: center; width: 150px;")
                       - const updatedBy = item.updatedBy.slice(-1)[0];
                       if(updatedBy)
                         p #{updatedBy.accountFullName}
