@@ -162,8 +162,6 @@ module.exports.detail = async (req, res) => {
 
     const account = await Account.findOne(find);
 
-    console.log(account);
-
     res.render("admin/pages/accounts/detail", {
       pageTitle: account.title,
       account: account
