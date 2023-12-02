@@ -11,11 +11,9 @@ mixin menu(user)
                     h6 Tài khoản của tôi
                 .menu-2-option
                     a(href='/user/info',class="option", id="info") Hồ sơ
-                    a(href='/user/address',class="option", id="address") Địa chỉ
+                    a(href='/user/purchase',class="option", id="purchase") Đơn mua
                     a(href='/user/changepassword',class="option", id="changepassword") Đổi mật khẩu
-            .menu-3
-                i.fa-solid.fa-bag-shopping
-                a(href='/user/purchase',class="option", id="purchase") Đơn mua
+                
         script.
            var script = document.createElement('script');
             script.src = "https://kit.fontawesome.com/92606ce77f.js";
