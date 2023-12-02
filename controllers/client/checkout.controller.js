@@ -58,12 +58,13 @@ module.exports.order = async (req, res) => {
       quantity: product.quantity,
       totalPrice: 0,
       stock: 0,
-      thumbnail: ''
+      thumbnail: '',
+      slug: "",
     };
 
     const productInfo = await Product.findOne({
       _id: product.product_id
-    }).select("price discountPercentage title stock thumbnail");
+    }).select("price discountPercentage title stock thumbnail slug");
 
     objectProduct.price = productInfo.price;
     objectProduct.discountPercentage = productInfo.discountPercentage;
@@ -72,6 +73,7 @@ module.exports.order = async (req, res) => {
     objectProduct.title = productInfo.title;
     objectProduct.stock = productInfo.stock - objectProduct.quantity;
     objectProduct.thumbnail = productInfo.thumbnail;
+    objectProduct.slug = productInfo.slug;
 
     products.push(objectProduct);
 

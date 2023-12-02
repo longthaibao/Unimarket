@@ -334,18 +334,6 @@ module.exports.purchase = async (req, res) => {
   // End Pagination
 
   const purchase = await Order.find({
-// <<<<<<< Long
-//     user_id: req.cookies.tokenUser,
-//   });
-//   const allProducts = purchase.map((order) => order.products).flat();
-//   const allId = allProducts.map((x) => x.product_id).flat();
-//   res.render("client/pages/user/purchase", {
-//     pageTitle: "Đơn mua",
-//     allProducts: allProducts,
-//     allId: allId,
-//   });
-// };
-// =======
     user_id: req.cookies.tokenUser
   })
   .limit(objectPagination.limitItems)
@@ -356,6 +344,4 @@ module.exports.purchase = async (req, res) => {
     purchase: purchase,
     pagination: objectPagination,
   })
-
 }
-

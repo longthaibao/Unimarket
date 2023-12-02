@@ -10,58 +10,54 @@ include ../../mixins/moment.pug
 
 block main
   if(role.permissions.includes("products-category_view"))
-  
-    h1 Danh mục sản phẩm
+  .container
+      h1 Danh mục sản phẩm
+      .card.mb-3
+          .card-body
+            .row
+              .col-8
+                if(role.permissions.includes("products-category_edit"))
+                  +form-change-multi(`${prefixAdmin}/products-category/change-multi?_method=PATCH`)
+              .col-4
+                if(role.permissions.includes("products-category_create"))
+                  a(
+                    href=`${prefixAdmin}/products-category/create`
+                    class="btn btn-outline-success"
+                  ) + Thêm mới
 
-    
+            table(
+              class="table table-hover table-sm"
+              checkbox-multi
+            )
+              thead
+                tr
+                  th
+                    input(type="checkbox" name="checkall")
+                  th STT
+                  th Hình ảnh
+                  th Tiêu đề
+                  th Vị trí
+                  th Trạng thái
+                  th Hành động
 
-    .card.mb-3
-      
-        .card-body
-          .row
-            .col-8
-              if(role.permissions.includes("products-category_edit"))
-                +form-change-multi(`${prefixAdmin}/products-category/change-multi?_method=PATCH`)
-            .col-4
-              if(role.permissions.includes("products-category_create"))
-                a(
-                  href=`${prefixAdmin}/products-category/create`
-                  class="btn btn-outline-success"
-                ) + Thêm mới
+              tbody
+                +table-tree(records)
 
-          table(
-            class="table table-hover table-sm"
-            checkbox-multi
-          )
-            thead
-              tr
-                th
-                  input(type="checkbox" name="checkall")
-                th STT
-                th Hình ảnh
-                th Tiêu đề
-                th Vị trí
-                th Trạng thái
-                th Hành động
+      //- +pagination(pagination)
 
-            tbody
-              +table-tree(records)
+      form(
+        action=""
+        method="POST"
+        id="form-change-status"
+        data-path=`${prefixAdmin}/products-category/change-status`
+      )
 
-    //- +pagination(pagination)
+      form(
+        action=""
+        method="POST"
+        id="form-delete-item"
+        data-path=`${prefixAdmin}/products-category/delete`
+      )
 
-    form(
-      action=""
-      method="POST"
-      id="form-change-status"
-      data-path=`${prefixAdmin}/products-category/change-status`
-    )
-
-    form(
-      action=""
-      method="POST"
-      id="form-delete-item"
-      data-path=`${prefixAdmin}/products-category/delete`
-    )
-
-    script(src="/admin/js/product.js")  
-    //- có thể dùng chung với product
+      script(src="/admin/js/product.js")  
+      //- có thể dùng chung với product
