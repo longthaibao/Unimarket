@@ -10,11 +10,67 @@ mixin menu(user)
                     i.fa-regular.fa-user
                     h6 Tài khoản của tôi
                 .menu-2-option
-                    a(href='/user/info',class="option") Hồ sơ
-                    a(href='/user/address',class="option") Địa chỉ
-                    a(href='/user/changepassword',class="option") Đổi mật khẩu
+                    a(href='/user/info',class="option", id="info") Hồ sơ
+                    a(href='/user/address',class="option", id="address") Địa chỉ
+                    a(href='/user/changepassword',class="option", id="changepassword") Đổi mật khẩu
             .menu-3
                 i.fa-solid.fa-bag-shopping
-                a(href='/user/purchase',class="option") Đơn mua
+                a(href='/user/purchase',class="option", id="purchase") Đơn mua
         script.
-           src="https://kit.fontawesome.com/92606ce77f.js" crossorigin="anonymous"
+           var script = document.createElement('script');
+            script.src = "https://kit.fontawesome.com/92606ce77f.js";
+            script.setAttribute("crossorigin", "anonymous");
+            document.head.appendChild(script);
+
+            function toggleActive(element) {
+              var options = document.querySelectorAll('.option');
+              options.forEach(function (opt) {
+                opt.classList.remove('active');
+              });
+              element.classList.add('active');
+              localStorage.setItem('activeOption', element.id);
+            }
+            document.addEventListener('DOMContentLoaded', function () {
+                const options = document.querySelectorAll('.option');
+                let activeOptionId = localStorage.getItem('activeOption');
+                if (!activeOptionId) {
+                    activeOptionId = "info";
+                    localStorage.setItem('activeOption', activeOptionId);
+                }
+                function handleOptionClick(opt) {
+                    var href = opt.getAttribute('href');
+                    toggleActive(opt);
+                    if (href) {
+                        window.location.href = href;
+                    }
+                }
+                options.forEach(function (opt) {
+                    opt.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    var href = opt.getAttribute('href');
+                     toggleActive(opt);
+                    if (href) {
+                    window.location.href = href;
+                    }
+                    });
+                });
+
+                //- Thêm xử lí sự kiện khi click ra ngoài menu
+                document.addEventListener("click", function (e) {
+                    var target = e.target;
+                    if (!target.closest('.menu')) {
+                       var options = document.querySelectorAll('.option');
+                        options.forEach(function (opt) {
+                            opt.classList.remove('active');
+                        });
+                        var defaultOption = document.getElementById("info");
+                        handleOptionClick(defaultOption);
+                    }
+                });
+                options.forEach(function (opt) {
+                    if (opt.id === activeOptionId) {
+                        toggleActive(opt);
+                    }
+                });
+
+            }); 

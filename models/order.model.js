@@ -7,7 +7,7 @@ const orderSchema = new mongoose.Schema(
     userInfo: {
       fullName: String,
       phone: String,
-      address: String
+      address: String,
     },
     products: [
       {
@@ -16,10 +16,15 @@ const orderSchema = new mongoose.Schema(
         title: String,
         price: Number,
         discountPercentage: Number,
+// <<<<<<< Long
+//         quantity: Number,
+//       },
+// =======
         priceNew: Number,
         totalPrice: Number,
         quantity: Number
       }
+// >>>>>>> main
     ],
     totalPrice: Number,
     deleted: {

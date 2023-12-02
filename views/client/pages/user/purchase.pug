@@ -2,6 +2,7 @@ extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 include ../../mixins/menu
 include ../../mixins/info-config
+
 include ../../mixins/pagination.pug
 
 block main
@@ -13,6 +14,7 @@ block main
     .row.content
       .col-3
         +menu(user)
+
       .col-9.mt-3
         .card
           .card-header Đơn hàng của tôi
@@ -38,3 +40,4 @@ block main
                       button(style="background-color: #027BFF; color: #ffffff; padding: 10px 25px; border: 0px; border-radius: 3px;") Mua lại
         div.mt-2              
           +pagination(pagination)
+
