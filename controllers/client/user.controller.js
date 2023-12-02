@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 const generateHelper = require("../../helpers/generate");
 const sendMailHelper = require("../../helpers/sendMail");
 const SettingGeneral = require("../../models/settings-general.model");
+const paginationHelper = require("../../helpers/pagination");
 
 // [GET] /user/register
 module.exports.register = async (req, res) => {
@@ -317,14 +318,44 @@ module.exports.newAdd = async (req, res, next) => {
 
 //[GET] user/purchase
 module.exports.purchase = async (req, res) => {
+  // Pagination
+  const countPurchase = await Order.find({
+    user_id: req.cookies.tokenUser
+  }).count();
+
+  let objectPagination = paginationHelper(
+    {
+      currentPage: 1,
+      limitItems: 4,
+    },
+    req.query,
+    countPurchase,
+  );
+  // End Pagination
+
   const purchase = await Order.find({
-    user_id: req.cookies.tokenUser,
-  });
-  const allProducts = purchase.map((order) => order.products).flat();
-  const allId = allProducts.map((x) => x.product_id).flat();
+// <<<<<<< Long
+//     user_id: req.cookies.tokenUser,
+//   });
+//   const allProducts = purchase.map((order) => order.products).flat();
+//   const allId = allProducts.map((x) => x.product_id).flat();
+//   res.render("client/pages/user/purchase", {
+//     pageTitle: "Đơn mua",
+//     allProducts: allProducts,
+//     allId: allId,
+//   });
+// };
+// =======
+    user_id: req.cookies.tokenUser
+  })
+  .limit(objectPagination.limitItems)
+  .skip(objectPagination.skip);
+
   res.render("client/pages/user/purchase", {
     pageTitle: "Đơn mua",
-    allProducts: allProducts,
-    allId: allId,
-  });
-};
+    purchase: purchase,
+    pagination: objectPagination,
+  })
+
+}
+
