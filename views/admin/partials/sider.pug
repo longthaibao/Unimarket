@@ -25,38 +25,37 @@
 //-         a(href=`${prefixAdmin}/settings/general`) Cài đặt chung
 
 
+.bg-light
+  .container.align-self-start
+    .row
+      nav.navbar.navbar-expand-lg.navbar-light.bg-light.px-0.ml-0
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNavDropdown', aria-controls='navbarNavDropdown', aria-expanded='false', aria-label='Toggle navigation', style='margin-left: 35px')    
+          span.navbar-toggler-icon
+        #navbarNavDropdown.collapse.navbar-collapse
+          ul.navbar-nav
+            li
+              a.nav-link(href=`${prefixAdmin}/dashboard`)
+                | Dashboard 
+                span.sr-only (current)
+            if(role.permissions.includes("products-category_view"))
+              li
+                a.nav-link(href=`${prefixAdmin}/products-category`) Danh mục sản phẩm
+                
+            if(role.permissions.includes("products-category_view"))
+              li
+                a.nav-link(href=`${prefixAdmin}/products`) Danh sách sản phẩm
 
+            if(role.permissions.includes("accounts_view"))
+              li
+                a.nav-link(href=`${prefixAdmin}/accounts`) Danh sách tài khoản
 
-nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNavDropdown', aria-controls='navbarNavDropdown', aria-expanded='false', aria-label='Toggle navigation', style='margin-left: 35px')    
-    span.navbar-toggler-icon
-  #navbarNavDropdown.collapse.navbar-collapse
-    ul.navbar-nav(style="margin: auto;")
-      li
-        a.nav-link(href=`${prefixAdmin}/dashboard`)
-          | Dashboard 
-          span.sr-only (current)
-      if(role.permissions.includes("products-category_view"))
-        li
-          a.nav-link(href=`${prefixAdmin}/products-category`) Danh mục sản phẩm
-          
-      if(role.permissions.includes("products-category_view"))
-        li
-          a.nav-link(href=`${prefixAdmin}/products`) Danh sách sản phẩm
+            if(role.permissions.includes("roles_view"))
+              li
+                a.nav-link(href=`${prefixAdmin}/roles`) Nhóm quyền
 
-      if(role.permissions.includes("accounts_view"))
-        li
-          a.nav-link(href=`${prefixAdmin}/accounts`) Danh sách tài khoản
+            if(role.permissions.includes("roles_permissions"))
+              li
+                a.nav-link(href=`${prefixAdmin}/roles/permissions`) Phân quyền
 
-      if(role.permissions.includes("roles_view"))
-        li
-          a.nav-link(href=`${prefixAdmin}/roles`) Nhóm quyền
-
-      if(role.permissions.includes("roles_permissions"))
-        li
-          a.nav-link(href=`${prefixAdmin}/roles/permissions`) Phân quyền
-
-      li
-          a.nav-link(href=`${prefixAdmin}/settings/general`) Cài đặt chung
-
-      
+            li
+                a.nav-link(href=`${prefixAdmin}/settings/general`) Cài đặt chung

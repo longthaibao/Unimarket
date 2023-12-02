@@ -5,8 +5,8 @@
   position: sticky;
   top: 0;
 	z-index: 999;
-  width: 90%;
-  left: 5%;
+  /* width: 90%; */
+  /* left: 5%; */
 }
 
 .header .inner-logo a {
@@ -24,7 +24,7 @@
   height: calc(100vh - 56px);
   position: fixed;
   top: 56px;
-  left: 0;
+  /* left: 0; */
 }
 
 .body .main {
@@ -33,8 +33,8 @@
   /* left: 150px; */
   
   /* width: calc(100% - 180px); */
-  width: 90%;
-  left: 5%;
+  /* width: 90%; */
+  /* left: 5%; */
 }
 /* End Body */
 
