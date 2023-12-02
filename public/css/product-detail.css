@@ -1,5 +1,7 @@
 /* product-detail */
   .product-detail .product-infor {
+    margin: auto;
+    width: 100%;
     background-color: white;
     box-sizing: border-box;
   }
