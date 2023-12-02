@@ -6,6 +6,7 @@ block main
     .container.my-5
       .row
         .product-infor
+        
           .image
             .inner-thumb
               img(src=product.thumbnail, alt=product.title)
@@ -16,7 +17,7 @@ block main
               if (product.price)
                 div(class="inner-price-old") #{product.price}đ
               if (product.discountPercentage)
-                div(class="inner-percent") Giảm tới <span>#{product.discountPercentage}$</span>
+                div(class="inner-percent") Giảm tới <span>#{product.discountPercentage}%</span>
             
             form(
               action=`/cart/add/${product.id}`
