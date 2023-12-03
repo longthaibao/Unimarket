@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const favicon = require("serve-favicon");
 const methodOverride = require("method-override");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -21,6 +22,9 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(methodOverride("_method"));
+
+// Favicon
+app.use(favicon(path.join(__dirname, '/public/images/favicon.ico')));
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
