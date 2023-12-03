@@ -35,9 +35,9 @@ block main
                       width="80px"
                     )
                   td #{item.productInfo.title}
-                  td #{item.productInfo.priceNew}$
+                  td &#8363;#{item.productInfo.priceNew}
                   td #{item.quantity}
-                  td #{item.totalPrice}$
+                  td &#8363;#{item.totalPrice}
             else
               tr
                 td(
@@ -45,7 +45,7 @@ block main
                   class="text-center"
                 ) Giỏ hàng trống.
         if(cartDetail.products.length > 0)
-          h3(class="text-right") Tổng đơn hàng: #{cartDetail.totalPrice}$
+          h3(class="text-right") Tổng đơn hàng: &#8363;#{cartDetail.totalPrice}
 
     if(cartDetail.products.length > 0)
       .row

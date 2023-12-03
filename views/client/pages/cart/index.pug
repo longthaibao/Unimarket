@@ -34,7 +34,7 @@ block main
                         img(src=item.productInfo.thumbnail, alt=item.productInfo.title width="80px")
                       td
                         a(href=`/products/detail/${item.productInfo.slug}`) #{item.productInfo.title}
-                      td #{item.productInfo.priceNew}đ
+                      td &#8363;#{item.productInfo.priceNew}
                       td
                         input(
                           type="number"
@@ -45,7 +45,7 @@ block main
                           product-id=item.product_id
                           style="width: 60px"
                         )
-                      td #{item.totalPrice}đ
+                      td &#8363;#{item.totalPrice}
                       td
                         a(
                           href=`/cart/delete/${item.product_id}`
@@ -58,7 +58,7 @@ block main
       .row
         .col-12
           .total-price
-            h3(class="text-right") Tổng đơn hàng: #{cartDetail.totalPrice}đ
+            h3(class="text-right") Tổng đơn hàng: &#8363;#{cartDetail.totalPrice}
       
       .row
         .col-12

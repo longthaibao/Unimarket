@@ -13,9 +13,9 @@ block main
           .infor
             h1(class="inner-title") #{product.title}
               if (product.priceNew)
-                div(class="inner-price-new") #{product.priceNew}đ
+                div(class="inner-price-new") &#8363;#{product.priceNew}
               if (product.price)
-                div(class="inner-price-old") #{product.price}đ
+                div(class="inner-price-old") &#8363;#{product.price}
               if (product.discountPercentage)
                 div(class="inner-percent") Giảm tới <span>#{product.discountPercentage}%</span>
             
