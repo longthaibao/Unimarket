@@ -8,7 +8,6 @@ const mongoose = require("mongoose");
 
 const generateHelper = require("../../helpers/generate");
 const sendMailHelper = require("../../helpers/sendMail");
-const SettingGeneral = require("../../models/settings-general.model");
 const paginationHelper = require("../../helpers/pagination");
 
 // [GET] /user/register

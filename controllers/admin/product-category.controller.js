@@ -2,10 +2,6 @@ const ProductCategory = require("../../models/product-category.model");
 
 const systemConfig = require("../../config/system");
 
-const filterStatusHelper = require("../../helpers/filterStatus");
-const searchHelper = require("../../helpers/search");
-const paginationHelper = require("../../helpers/pagination");
-
 const createTreeHelper = require("../../helpers/createTree");
 
 // [GET] /admin/products-category
@@ -98,7 +94,6 @@ module.exports.editPatch = async (req, res) => {
 module.exports.deleteItem = async (req, res) => {
   const id = req.params.id;
 
-  
   await ProductCategory.updateOne(
     { _id: id },
     {

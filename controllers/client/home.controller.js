@@ -2,7 +2,6 @@ const Product = require("../../models/product.model");
 const ProductCategory = require("../../models/product-category.model");
 
 const productsHelper = require("../../helpers/products");
-const productsCategoryHelper = require("../../helpers/products-category");
 
 // [GET] /
 module.exports.index = async (req, res) => {
@@ -33,8 +32,6 @@ module.exports.index = async (req, res) => {
 
   const newProductsCategory = productsHelper.priceNewProducts(productsCategory);
   // Hết Hiển thị danh sách sản phẩm mới nhất
-
-  
 
   res.render("client/pages/home/index", {
     pageTitle: "Trang chủ",
