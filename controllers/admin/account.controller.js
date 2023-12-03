@@ -133,7 +133,6 @@ module.exports.changeStatus = async (req, res) => {
 module.exports.deleteItem = async (req, res) => {
   const id = req.params.id;
 
-  
   await Account.updateOne(
     { _id: id },
     {
