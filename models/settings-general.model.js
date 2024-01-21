@@ -7,13 +7,17 @@ const settingGeneralSchema = new mongoose.Schema(
     phone: String,
     email: String,
     address: String,
-    copyright: String
+    copyright: String,
   },
   {
     timestamps: true,
   }
 );
 
-const SettingGeneral = mongoose.model("SettingGeneral", settingGeneralSchema, "settings-general");
+const SettingGeneral = mongoose.model(
+  "SettingGeneral",
+  settingGeneralSchema,
+  "settings-general"
+);
 
 module.exports = SettingGeneral;
